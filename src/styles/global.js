@@ -6,19 +6,25 @@ export default createGlobalStyle`
     padding: 0;
 
     box-sizing: border-box;
+    
   };
 
+  :root {
+    font-size: 62.5%;
+  }
+
   body {
-    background-color: ${ ({theme}) => theme.COLORS.RED };
+    background-color: ${ ({theme}) => theme.COLORS.BACKGROUND };
     color: ${ ({theme}) => theme.COLORS.BLUE };
 
     -webkit-font-smoothing: antialiased;
   };
 
   body, button, input, textarea {
-    font-family: 'Roboto Slab', serif;
-    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
     outline: none;
+    border: none;
   };
 
   a {
@@ -33,5 +39,6 @@ export default createGlobalStyle`
   button:hover, a:hover {
     filter: brightness(0.9);
   };
+
 
 `;
