@@ -21,6 +21,22 @@ export const Container = styled.div`
       margin-right: 2.9rem;
     }
   }
+
+  @media (max-width: 768px) {
+    display: block;
+    margin: 0 auto;
+
+    > h1 {
+      margin: 2.4rem auto;
+    }
+
+    > form {
+      height: 75vh;
+
+      padding: 1rem;
+    }
+  }
+
 `;
 
 export const Form = styled.form`
@@ -51,4 +67,19 @@ export const Form = styled.form`
 
     margin-top: 3.2rem;
   }
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    font-size: 1.4rem;
+
+    > h2 {
+      margin-bottom: 1.6rem;
+    }
+
+    > input {
+      margin-bottom: 2.1rem;
+    }
+    
+  }
+
 `
