@@ -17,4 +17,11 @@ export const Container = styled.button`
   background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_BUTTON  };
 
   border-radius: 5px;
+
+  > svg {
+    margin-right: 1.2rem;
+    color: ${ ({ theme }) => theme.COLORS.WHITE };
+    
+    font-size: 2.1rem;
+  }
 `;
