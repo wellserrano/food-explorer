@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
 
   height: 10.4rem;
-  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADER };
+  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
   > svg {
     margin-right: 1.2rem;
