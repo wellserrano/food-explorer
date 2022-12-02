@@ -3,6 +3,7 @@ import { Container, Content } from './styles'
 //Components	
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
+import { Carousel } from '../../components/Carousel'
 
 import splashFruits from '../../assets/splashfruits.png'
 
@@ -21,6 +22,19 @@ export function Home() {
           </div>
         </div>
 
+      
+        <Carousel
+          title='Pratos principais'
+        />
+
+        <Carousel 
+          title='Sobremesas'
+        />
+
+        <Carousel 
+          title='Bebidas'
+        />
+      
       </Content>
 
       <Footer />
