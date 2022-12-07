@@ -13,7 +13,11 @@ import { useAuth } from '../../hooks/auth'
 
 
 export function Header() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+
+  function handleLogOut() {
+    signOut();
+  }
 
   return (
     <Container>
@@ -29,10 +33,13 @@ export function Header() {
       {
         user.admin ? 
         <AdminButton>Administrador</AdminButton> :
-        <Button title="Meu pedido (0)" icon={ TbReceipt } />
+        <Button 
+          title="Meu pedido (0)" 
+          icon={ TbReceipt } 
+        />
       }
 
-      <FiLogOut />
+      <FiLogOut onClick={ handleLogOut } />
 
 
     </Container>
