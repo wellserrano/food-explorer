@@ -1,9 +1,43 @@
 import { Container, Form } from './styles'
 
+import { Link } from 'react-router-dom'
+
+import { api } from '../../services/api'
+import { useState } from 'react';
+
 import { Button } from '../../components/Button'
 import { TextInput } from '../../components/TextInput'
 
 export function SignUp() {
+  const [name, setName ]          = useState('')
+  const [email, setEmail ]        = useState('')
+  const [password, setPassword ]  = useState('');
+
+
+
+  function HandleSignUp() {
+    api.post('/users', {
+        name,
+        email,
+        password
+      })
+      .then(() => {
+        alert("Usuário cadastrado com sucesso!")
+      })
+      .catch( error => {
+
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          console.error(error)
+          alert("Não foi possível cadastrar o usuário");
+        }
+
+      })
+
+    };
+
+
   return (
     <Container>
       
@@ -21,21 +55,27 @@ export function SignUp() {
         <TextInput 
           caption='Seu nome' 
           placeholder='Maria da Silva'
+          onChange={e => setName(e.target.value) }
         />
         <TextInput 
           caption='Email' 
           placeholder='exemplo@exemplo.com.br'
+          onChange={e => setEmail(e.target.value) }
         />
         <TextInput 
           caption='Senha' 
           placeholder='Mínimo 6 caracteres'
+          type='password'
+          onChange={e => setPassword(e.target.value) }
         />
         
         <Button 
+          type="button"
           title="Criar conta"
+          onClick={HandleSignUp}
         />
 
-        <a href="/signin">Já tenho uma conta</a>
+        <Link to='/signin'>Já tenho uma conta</Link>
 
       </Form>
     </Container>

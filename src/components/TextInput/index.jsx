@@ -1,12 +1,12 @@
 import { Container, Label } from './styles'
 
-export function TextInput({caption='', ...rest }) {
+export function TextInput({caption='', type='text', ...rest }) {
   return (
     <Container>
       <Label>
         { caption }
         <input 
-          type='text'
+          type={ type }
           {...rest}
         />
       </Label>

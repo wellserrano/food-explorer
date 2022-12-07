@@ -2,8 +2,9 @@ export default {
   COLORS: {
 
     BACKGROUND: "#000A0F",
+    
     BACKGROUND_FORM: "#001119",
-    BACKGROUND_HEADER: "#00111A",
+    BACKGROUND_HEADFOOT: "#00111A",
     BACKGROUND_INPUT: "#0D1D25",
     BACKGROUND_BUTTON: "#92000E",
 
@@ -13,8 +14,9 @@ export default {
     LIGHTGRAY: "#C4C4CC",
     MEDGRAY: "#7C7C8A",
 
+    MONEY: "#82F3FF",
 
-
+    GRADIENT_PANEL: "linear-gradient(180deg, #091E26 0%, #00131C 100%);",
 
   },
 

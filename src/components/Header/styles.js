@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   grid-area: header;
@@ -8,7 +9,7 @@ export const Container = styled.div`
   justify-content: center;
 
   height: 10.4rem;
-  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADER };
+  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
   > svg {
     margin-right: 1.2rem;
@@ -56,3 +57,8 @@ export const Container = styled.div`
 
 
 `;
+
+export const AdminButton = styled(Link)`
+  display: flex;
+  align-items: center;
+`

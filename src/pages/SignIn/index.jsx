@@ -1,9 +1,24 @@
 import { Container, Form } from './styles'
 
+import { useState } from 'react'
+import { useAuth } from '../../hooks/auth'
+
 import { Button } from '../../components/Button'
 import { TextInput } from '../../components/TextInput'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function SignIn() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+  const { signIn } = useAuth();
+
+  function handleSignIn() {
+    signIn({ email, password });
+    navigate('/');
+  }
+
   return (
     <Container>
       
@@ -21,17 +36,21 @@ export function SignIn() {
         <TextInput 
           caption='Email' 
           placeholder='exemplo@exemplo.com.br'
+          onChange={ e => setEmail(e.target.value) }
         />
         <TextInput 
           caption='Senha' 
           placeholder='Mínimo 6 caracteres'
+          onChange={ e => setPassword(e.target.value) }
         />
         
         <Button 
           title="Entrar"
+          type="button"
+          onClick={ handleSignIn }
         />
 
-        <a href="/signup">Criar uma conta</a>
+        <Link to={-1}>Criar uma conta</Link>
 
       </Form>
     </Container>
