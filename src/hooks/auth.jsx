@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 
 const AuthContext = createContext({});
@@ -12,6 +12,9 @@ function AuthProvider({ children }) {
       const response = await api.post("/sessions", { email, password })
       const { user, token } = response.data;
 
+      localStorage.setItem("@foodexp:token", token)
+      localStorage.setItem("@foodexp:user", JSON.stringify(user));
+
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
       setData({ user, token });
       
@@ -23,6 +26,24 @@ function AuthProvider({ children }) {
       }
     }
   }
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('@foodexp:token')
+    const user = localStorage.getItem('@foodexp:user');
+
+    console.log('mmemem', {token, user})
+
+    if (token && user) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+      setData({ 
+        token, 
+        user: JSON.parse(user)
+      })
+
+    }
+  }, [])
 
   return (
     <AuthContext.Provider value={{ 
