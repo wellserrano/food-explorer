@@ -5,6 +5,12 @@ import { TextInput } from '../../components/TextInput'
 import { Link } from 'react-router-dom'
 
 export function SignIn() {
+  
+  async function HandleSignUp() {
+    return
+
+  }
+
   return (
     <Container>
       
@@ -30,6 +36,7 @@ export function SignIn() {
         
         <Button 
           title="Entrar"
+          onClick={HandleSignUp}
         />
 
         <Link to={-1}>Criar uma conta</Link>
