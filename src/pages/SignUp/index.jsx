@@ -70,8 +70,9 @@ export function SignUp() {
         />
         
         <Button 
-          onClick={HandleSignUp}
+          type="button"
           title="Criar conta"
+          onClick={HandleSignUp}
         />
 
         <Link to='/signin'>Já tenho uma conta</Link>
