@@ -62,3 +62,8 @@ export const AdminButton = styled(Link)`
   display: flex;
   align-items: center;
 `
+
+export const Blank = styled.div`
+  width: 200px;
+  background-color: red;
+`

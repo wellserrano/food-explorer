@@ -1,4 +1,4 @@
-import { Container, AdminButton } from './styles'
+import { Container, AdminButton, Blank } from './styles'
 
 //Components
 import { Button } from '../Button'
@@ -25,6 +25,7 @@ export function Header() {
       <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
       </svg>
       <span>food.exp</span>
+
 
       <a href="/favorites">Meus favoritos</a>
 

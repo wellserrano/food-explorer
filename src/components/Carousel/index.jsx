@@ -9,6 +9,7 @@ export function Carousel({ title, ...rest }) {
 
       <Dishes>
         <Card
+          key={1}
           data={{
             title: 'Torradas de Parma',
             description: 'Presunto de parma e rúcula em um pão com fermentação natural.',
@@ -16,6 +17,7 @@ export function Carousel({ title, ...rest }) {
           }}
           />
         <Card
+          key={2}
           data={{
             title: 'Torradas de Parma',
             description: 'Presunto de parma e rúcula em um pão com fermentação natural.',
@@ -23,6 +25,7 @@ export function Carousel({ title, ...rest }) {
           }}
           />
         <Card
+          key={3}
           data={{
             title: 'Torradas de Parma',
             description: 'Presunto de parma e rúcula em um pão com fermentação natural.',

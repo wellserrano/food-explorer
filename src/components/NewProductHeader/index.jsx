@@ -29,7 +29,7 @@ export function NewProductHeader() {
         <span>food.exp</span>
       </div>
 
-      <AdminButton>Administrador</AdminButton> :
+      <AdminButton>Administrador</AdminButton>
       <Button 
         title="Meu pedido (0)" 
         icon={ TbReceipt } 
