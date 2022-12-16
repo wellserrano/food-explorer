@@ -28,6 +28,8 @@ export const Label = styled.label`
   flex-direction: column;
   
   color: ${({ theme }) => theme.COLORS.LIGHTGRAY };  
+  
+  font-size: 1.6rem;
   font-family: ${({ theme }) => theme.FONTS.ROBOTO };
   
   gap: .8rem;
