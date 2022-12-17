@@ -21,19 +21,18 @@ import { FiUpload } from 'react-icons/fi';
 import { HiOutlineChevronLeft } from 'react-icons/hi'
 
 export function NewProduct() {
-  const [imageFile, setImageFile] = useState('');
+  const [name, setName] = useState('')
+  
+  const [imageFile, setImageFile] = useState('')
+
 
   async function handleImageUpload(event) {
     const file = event.target.files[0];
     setImageFile(file);
   }
 
-  function handleAddIngredient() {
-
-  }
-  
-  function handleRemoveIngredient() {
-    
+  function handleIngredients(data) {
+    console.log(data)
   }
 
   return (
@@ -71,7 +70,7 @@ export function NewProduct() {
           <div className="tags">
             <span>Ingredientes</span>
             <TagIngredients 
-            handlers={{ handleAddIngredient, handleRemoveIngredient }}
+              sendData={ handleIngredients }
             />
           </div>
 
@@ -91,7 +90,7 @@ export function NewProduct() {
 
           <div className="add-button">
             <AddButton type='button'>
-                Adicionar pedido
+              Adicionar pedido
             </AddButton>
           </div>
 

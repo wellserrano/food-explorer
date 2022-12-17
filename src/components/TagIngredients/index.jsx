@@ -2,9 +2,9 @@ import { Container } from './styles';
 
 import { Tag } from '../Tag';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function TagIngredients() {
+export function TagIngredients({ sendData }) {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState('');
 
@@ -13,15 +13,19 @@ export function TagIngredients() {
 
     setIngredients( prevState => [...prevState, newIngredient]);
     setNewIngredient('');
+    
   }
 
   function handleDeleteIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
   }
 
-  return (
-    <Container>
+  useEffect(() => {
+    sendData(ingredients)
+  }, [ingredients])
 
+  return (
+    <Container> 
       {
         ingredients.map((ingredient, index) => (
           <Tag 
