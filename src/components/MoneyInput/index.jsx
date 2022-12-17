@@ -1,8 +1,8 @@
 import { Container, Label } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-export function MoneyInput({ caption="", prefix="" }) {
+export function MoneyInput({ caption="", prefix="", sendData }) {
   const [price, setPrice] = useState('');
 
   function handlePriceValue(entry) {
@@ -18,6 +18,10 @@ export function MoneyInput({ caption="", prefix="" }) {
 
     setPrice(formattedValue)
   }
+
+  useEffect(() => {
+    sendData(price)
+  }, [price])
 
   return (
     <Container>

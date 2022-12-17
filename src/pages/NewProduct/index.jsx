@@ -22,8 +22,11 @@ import { HiOutlineChevronLeft } from 'react-icons/hi'
 
 export function NewProduct() {
   const [name, setName] = useState('')
-  
+  const [value, setValue] = useState(0)
   const [imageFile, setImageFile] = useState('')
+  const [ingredients, setIngredients] = useState([])
+  const [description, setDescription] = useState('');
+  
 
 
   async function handleImageUpload(event) {
@@ -32,7 +35,15 @@ export function NewProduct() {
   }
 
   function handleIngredients(data) {
-    console.log(data)
+    setIngredients(data)
+  }
+
+  function handlePrice(data) {
+
+    const priceWithDotSeparator = data.replace(",", ".")
+    const priceAsFloatNumber = parseFloat(priceWithDotSeparator);
+
+    setValue(priceAsFloatNumber);
   }
 
   return (
@@ -63,7 +74,9 @@ export function NewProduct() {
           <div className='name-input'>
             <TextInput 
               caption='Nome'
+              value={ name }
               placeholder='Ex.: Salada ceaser'
+              onChange={ e => setName(e.target.value)}
             />
           </div>
 
@@ -76,14 +89,17 @@ export function NewProduct() {
 
           <div className="price">
             <MoneyInput 
-              caption='Preço'
               prefix='R$'
+              caption='Preço'
+              sendData={ handlePrice }
             />
           </div>
 
           <div className="description">
             <span>Descrição</span>
             <TextArea 
+              value={ description }
+              onChange={ e => setDescription(e.target.value)}
               placeholder='Fale brevemente sobre o prato, seus ingredientes e composição'
             />
           </div>
