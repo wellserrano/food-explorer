@@ -28,6 +28,14 @@ export function NewProduct() {
     setImageFile(file);
   }
 
+  function handleAddIngredient() {
+
+  }
+  
+  function handleRemoveIngredient() {
+    
+  }
+
   return (
     <Container>
       <NewProductHeader />
@@ -62,7 +70,9 @@ export function NewProduct() {
 
           <div className="tags">
             <span>Ingredientes</span>
-            <TagIngredients />
+            <TagIngredients 
+            handlers={{ handleAddIngredient, handleRemoveIngredient }}
+            />
           </div>
 
           <div className="price">
