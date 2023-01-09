@@ -1,9 +1,12 @@
 import { 
   Container, 
-  Content, 
+  Form, 
   AddButton, 
   ImageUpload,  
 } from './styles';
+
+//api conn
+import { api } from '../../services/api'
 
 //Hooks
 import { useState } from 'react';
@@ -23,13 +26,15 @@ import { HiOutlineChevronLeft } from 'react-icons/hi'
 export function NewProduct() {
   const [name, setName] = useState('')
   const [value, setValue] = useState(0)
-  const [imageFile, setImageFile] = useState('')
+  const [imageFile, setImageFile] = useState({})
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('');
   
 
 
   async function handleImageUpload(event) {
+    event.preventDefault()
+
     const file = event.target.files[0];
     setImageFile(file);
   }
@@ -46,10 +51,34 @@ export function NewProduct() {
     setValue(priceAsFloatNumber);
   }
 
+  async function handleAddNewProduct() {
+
+    const productData = {
+      name, 
+      description,
+      price: value, 
+      image: imageFile.name
+    };
+      
+    const response = await api.post('/products', { productData })
+    const product_id = response.data[0]
+
+    await api.post('/ingredients', { product_id, ingredients })
+
+    alert('Produto criado com sucesso')
+    
+    refreshPage();
+    
+  }
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <Container>
       <NewProductHeader />
-        <Content>
+        <Form>
           <div className='back-link'>
             <HiOutlineChevronLeft />
             <span>voltar</span>
@@ -64,6 +93,7 @@ export function NewProduct() {
               <input 
                 id='image'
                 type='file'
+                accept='image/*'
                 onChange={ handleImageUpload }
               />
                 <FiUpload />
@@ -105,12 +135,15 @@ export function NewProduct() {
           </div>
 
           <div className="add-button">
-            <AddButton type='button'>
+            <AddButton
+              type='button'
+              onClick={ handleAddNewProduct }
+            >
               Adicionar pedido
             </AddButton>
           </div>
 
-        </Content>
+        </Form>
       <Footer />
     </Container>
   )
