@@ -59,8 +59,15 @@ export function NewProduct() {
       price: value, 
       image: imageFile.name
     };
+
+    console.log('imageFile', imageFile)
+
+    const fileUploadForm = new FormData();
+    fileUploadForm.append("image", imageFile)
       
-    const response = await api.post('/products', { productData })
+    const response = await api.post('/products', productData);
+    await api.post('/products/image', fileUploadForm);
+
     const product_id = response.data[0]
 
     await api.post('/ingredients', { product_id, ingredients })
