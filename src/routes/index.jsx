@@ -9,8 +9,6 @@ export function Routes() {
   
   const { user } = useAuth();
 
-  console.log('user', user)
-
   return(
     <BrowserRouter>
       { user ? <AppRoutes /> : <AuthRoutes /> }

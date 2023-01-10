@@ -8,10 +8,18 @@ import imgTest from '../../assets/miniatures/Maskgroup-5.png'
 
 
 export function Card({ data, ...rest }) {
+
+  function handleFavorite() {
+    console.log(data)
+  }
+
+
   return (
     <Container { ...rest }>
       <div className="favorite">
-        <FiHeart />
+        <FiHeart 
+          onClick={handleFavorite}
+        />
       </div>
       <main>
         <img src={ imgTest } alt="" />

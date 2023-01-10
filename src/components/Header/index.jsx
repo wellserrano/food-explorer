@@ -1,4 +1,4 @@
-import { Container, AdminButton } from './styles'
+import { Container, AdminButton, Blank } from './styles'
 
 //Components
 import { Button } from '../Button'
@@ -26,13 +26,14 @@ export function Header() {
       </svg>
       <span>food.exp</span>
 
+
       <a href="/favorites">Meus favoritos</a>
 
       <SearchInput className="search-input" icon={ FiSearch }/>
 
       {
         user.admin ? 
-        <AdminButton>Administrador</AdminButton> :
+        <AdminButton to="/newproduct">Administrador</AdminButton> :
         <Button 
           title="Meu pedido (0)" 
           icon={ TbReceipt } 

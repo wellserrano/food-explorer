@@ -11,17 +11,25 @@ export const Container = styled.div`
   height: 10.4rem;
   background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
-  > svg {
-    margin-right: 1.2rem;
-  }
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-  > span {
-    color: ${ ({ theme }) => theme.COLORS.WHITE };
-    font-size: 2.5rem;
-    font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+    width: 77.6rem;
 
-    margin-right: 3.7rem;
-    cursor: default;
+    > svg {
+      margin-right: 1.2rem;
+    }
+  
+    > span {
+      color: ${ ({ theme }) => theme.COLORS.WHITE };
+      font-size: 2.5rem;
+      font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+  
+      margin-right: 3.7rem;
+      cursor: default;
+    }
   }
 
   > a {
