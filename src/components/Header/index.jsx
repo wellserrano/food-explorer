@@ -33,7 +33,7 @@ export function Header() {
 
       {
         user.admin ? 
-        <AdminButton>Administrador</AdminButton> :
+        <AdminButton to="/newproduct">Administrador</AdminButton> :
         <Button 
           title="Meu pedido (0)" 
           icon={ TbReceipt } 

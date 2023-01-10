@@ -9,7 +9,7 @@ import {
 import { api } from '../../services/api'
 
 //Hooks
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //Components
 import { Footer } from '../../components/Footer'
@@ -20,13 +20,13 @@ import { TagIngredients } from '../../components/TagIngredients'
 import { NewProductHeader } from '../../components/NewProductHeader';
 
 //Icons
-import { FiUpload } from 'react-icons/fi';
+import { FiUpload, FiCheckCircle } from 'react-icons/fi';
 import { HiOutlineChevronLeft } from 'react-icons/hi'
 
 export function NewProduct() {
   const [name, setName] = useState('')
   const [value, setValue] = useState(0)
-  const [imageFile, setImageFile] = useState({})
+  const [imageFile, setImageFile] = useState(null)
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('');
   
@@ -103,7 +103,10 @@ export function NewProduct() {
                 accept='image/*'
                 onChange={ handleImageUpload }
               />
-                <FiUpload />
+                {
+                  imageFile ? <FiCheckCircle /> : <FiUpload />
+                }
+
                 Selecione imagem
             </label>
           </ImageUpload>
