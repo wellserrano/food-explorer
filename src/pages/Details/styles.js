@@ -20,8 +20,6 @@ export const ContentLeft = styled.div`
 
   color: ${ ({ theme }) => theme.COLORS.WHITE };
 
-  /* background-color: white; */
-
   .back-link {
     grid-area: BackLink;
     
@@ -42,6 +40,11 @@ export const ContentLeft = styled.div`
     }
 
   };
+
+  > img {
+    width: 39rem;
+    height: 39rem;
+  }
 `;
 
 export const ContentRight = styled.div`
@@ -49,10 +52,14 @@ export const ContentRight = styled.div`
 
   > h2 {
     color: ${ ({ theme }) => theme.COLORS.WHITE };
+    font-weight: 100;
+
   }
 
   > p {
-    color: ${ ({ theme }) => theme.COLORS.WHITE2 };;
+    color: ${ ({ theme }) => theme.COLORS.WHITE2 };
+    font-weight: 100;
+
   }
 
 `;

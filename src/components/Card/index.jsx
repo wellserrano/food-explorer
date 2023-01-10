@@ -29,7 +29,7 @@ export function Card({ data, ...rest }) {
           <span>R$ </span>{ data.price.replaceAll('.', ',') }
         </Money>
       </main>
-        <NumberInput placeholder="0"/>
+        <NumberInput />
       
     </Container>
   )
