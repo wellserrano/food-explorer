@@ -31,12 +31,14 @@ export function Details() {
 
         <ContentRight>
           <h2>Salada Ravanello</h2>
-          <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim</p>
+          <p>Rabanetes, folhas verdes e milho agridoce salpicadOs com gergelim</p>
           
           <Ingredients />
 
-          <span>R$ 25,97 </span>
-          <NumberInput />
+          <div className="price-quantity">
+            <span>R$ 25,97 </span>
+            <NumberInput />
+          </div>
 
         </ContentRight>
 

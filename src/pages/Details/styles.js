@@ -50,16 +50,24 @@ export const ContentLeft = styled.div`
 export const ContentRight = styled.div`
   grid-area: contentRight;
 
-  > h2 {
-    color: ${ ({ theme }) => theme.COLORS.WHITE };
-    font-weight: 100;
+  color: ${ ({ theme }) => theme.COLORS.WHITE };
 
+  > h2 {
+    font-weight: 100;
   }
 
   > p {
     color: ${ ({ theme }) => theme.COLORS.WHITE2 };
     font-weight: 100;
 
+  }
+
+  .price-quantity {
+    display: flex;
+    align-items: center;
+
+    gap: 1.8rem;
+    
   }
 
 `;
