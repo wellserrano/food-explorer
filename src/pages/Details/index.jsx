@@ -1,4 +1,4 @@
-import { Container, ContentLeft, ContentRight } from './styles'
+import { Container, Content, ContentLeft, ContentRight } from './styles'
 
 //Components	
 import { Header } from '../../components/Header'
@@ -20,19 +20,21 @@ export function Details() {
       
       <Header />
 
-        <ContentLeft>
-          <div className='back-link'>
-            <HiOutlineChevronLeft />
-            <span>voltar</span>
-          </div>
+      <div className='back-link'>
+        <HiOutlineChevronLeft />
+        <span>voltar</span>
+      </div>
 
+      <Content>
+
+        <ContentLeft>
           <img src={ imageMask } alt="" />
         </ContentLeft>
 
         <ContentRight>
           <h2>Salada Ravanello</h2>
-          <p>Rabanetes, folhas verdes e milho agridoce salpicadOs com gergelim</p>
-          
+          <p>Rabanetes, folhas verdes e milho agridoce salpicados com gergelim</p>
+        
           <Ingredients />
 
           <div className="price-quantity">
@@ -41,6 +43,8 @@ export function Details() {
           </div>
 
         </ContentRight>
+
+      </Content> 
 
 
       <Footer />  
