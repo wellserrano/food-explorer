@@ -15,7 +15,7 @@ export const Container = styled.div`
   `;
 export const Rows = styled.div`
   overflow-y: auto;
-  max-width: 41.6rem;
+  max-height: 41.6rem;
 `;
 
 export const Row = styled.div`
