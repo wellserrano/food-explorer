@@ -13,6 +13,13 @@ export const Container = styled.div`
 
 export const Items = styled.div`
   grid-area: contentLeft;
+
+  margin: 3.4rem 7.5rem 15.2rem 12.3rem;
+
+  > h2 {
+    margin-bottom: 3.2rem;
+    color: ${ ({ theme }) => theme.COLORS.WHITE }
+  }
 `;
 
 export const Payment = styled.div`
