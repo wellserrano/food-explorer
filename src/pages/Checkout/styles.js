@@ -9,6 +9,8 @@ export const Container = styled.div`
   "contentLeft  contentRight"
   "footer       footer";
   
+  color: ${ ({ theme }) => theme.COLORS.WHITE }
+  
 `;
 
 export const Items = styled.div`
@@ -18,7 +20,6 @@ export const Items = styled.div`
 
   > h2 {
     margin-bottom: 3.2rem;
-    color: ${ ({ theme }) => theme.COLORS.WHITE }
   }
 `;
 

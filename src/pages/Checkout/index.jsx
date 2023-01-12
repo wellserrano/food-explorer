@@ -3,6 +3,7 @@ import { Container, Items, Payment } from './styles';
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { OrderItems } from '../../components/OrderItems'
+import { PaymentMethod } from '../../components/PaymentMethod'
 
 export function Checkout() {
   return (
@@ -16,6 +17,7 @@ export function Checkout() {
 
       <Payment>
         <h2>Pagamento</h2>
+        <PaymentMethod></PaymentMethod>
       </Payment>
 
       <Footer />
