@@ -18,6 +18,8 @@ export default {
 
     MONEY: "#82F3FF",
 
+    TABLE_BORDER: "#192227",
+
     GRADIENT_PANEL: "linear-gradient(180deg, #091E26 0%, #00131C 100%);",
 
   },
