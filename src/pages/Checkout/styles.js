@@ -25,4 +25,11 @@ export const Items = styled.div`
 
 export const Payment = styled.div`
   grid-area: contentRight;
+
+  margin: 3.4rem 7.5rem 0 0;
+  
+  > h2 {
+    margin-bottom: 3.2rem;
+  }
+
 `;

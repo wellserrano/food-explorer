@@ -25,7 +25,7 @@ export const Option = styled.button`
 
 export const Method = styled.div`
 
-  height: 30rem;
+  height: 38rem;
 
   border-left: 1px solid rgba(255, 255, 255, 0.10);
   border-right: 1px solid rgba(255, 255, 255, 0.10);
@@ -67,13 +67,39 @@ export const Method = styled.div`
 
     padding: 4.7rem 13rem;
 
-    img {
-      width: 20rem;
-      height: 20rem;
-    };
   };
 
   &.credit-card-info {
+    padding: 5.9rem 9.1rem 4.8rem;
 
+    font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+
+    label {
+      font-size: 1.6rem;
+      color: ${ ({ theme }) => theme.COLORS.LIGHTGRAY };
+    }
+
+    input {
+      margin-top: 8px;
+    }
+    
+    .in-line {
+      display: flex;
+      gap: 1.7rem ;
+    }
+
+    > button {
+      width: 34.8rem;
+      height: 5.6rem;
+      padding: 0;
+
+      font-size: 1.4rem;
+
+      > svg {
+        font-size: 3.2rem;
+      }
+    }
+
+    
   }
 `

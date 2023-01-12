@@ -2,11 +2,15 @@ import { Container, Option, Method } from "./styles";
 
 import { useState } from "react";
 
-import sampleQR from '../../assets/qrcode 1.png'
+import { Button } from '../../components/Button'
+import { TextInput } from '../../components/TextInput'
 
+import { TbReceipt } from 'react-icons/tb'
 import { FiCheckCircle } from 'react-icons/fi'
-import { HiOutlineClock } from 'react-icons/hi';
-import ForkKnife from '../../assets/forknife.svg'
+import { HiOutlineClock } from 'react-icons/hi'
+import sampleQR from '../../assets/qrcode 1.png'
+import Receipt from '../../assets/Receipt.svg';
+import ForkKnife from '../../assets/forknife.svg';
 
 export function PaymentMethod() {
   const [pixButton, setPixButton] = useState(false)
@@ -72,16 +76,31 @@ export function PaymentMethod() {
         <Method className="credit-card-info">
           <label htmlFor="credit-card-number">
             Número do Cartão
-            <input id="credit-card-number" type="number" />
+            <TextInput 
+              id="credit-card-number" 
+              placeholder="0000 0000 0000 0000"
+            />
           </label>
-          <label htmlFor="valid">
-            Validade
-            <input id="valid" type="number" />
-          </label>
-          <label htmlFor="CVC">
-            CVC
-            <input id="CVC" type="number" />
-          </label>
+          
+          <div className="in-line">
+            <label htmlFor="valid">
+              Validade
+              <TextInput 
+                id="valid" 
+                placeholder="01/01"
+              />
+            </label>
+            <label htmlFor="CVC">
+              CVC
+              <TextInput 
+                id="CVC" 
+                placeholder="123"
+              />
+            </label>
+          </div>
+
+          <Button title="Finalizar pagamento" icon={ TbReceipt } />
+
         </Method>
         
       }
