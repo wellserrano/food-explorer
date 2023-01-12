@@ -1,5 +1,8 @@
 import { Container } from "./styles";
 
+import { BsChevronDown } from 'react-icons/bs'
+
+
 export function SelectBox() {
   return (
     <Container>

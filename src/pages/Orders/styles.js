@@ -41,7 +41,7 @@ export const Table = styled.div`
       &:first-child {
         border-top-left-radius: 8px;
 
-        width: 15.1rem;
+        min-width: 15.1rem;
       }
 
       &:nth-child(2) {
