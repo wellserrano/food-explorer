@@ -24,19 +24,56 @@ export const Option = styled.button`
 `
 
 export const Method = styled.div`
-  .image-container {
+
+  height: 30rem;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.10);
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+  &.message {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    
+    gap: 3.7rem;
+
+    padding: 4.7rem 13rem;
+
+    color: ${ ({ theme }) => theme.COLORS.LIGHTGRAY };
+
+    svg {
+      font-size: 10.4rem;
+      /* height: 10.4rem; */
+
+      opacity: .7;
+    };
+
+    > span {
+      width: 34.8rem;
+
+      display: flex;
+      justify-content: center;
+    }
+
+  };
+
+
+  &.pix-qr-container {
     display: flex;
     justify-content: center;
 
     padding: 4.7rem 13rem;
 
-    border-left: 1px solid rgba(255, 255, 255, 0.10);
-    border-right: 1px solid rgba(255, 255, 255, 0.10);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-
     img {
-      width: 27rem;
-      height: 27rem;
+      width: 20rem;
+      height: 20rem;
     };
+  };
+
+  &.credit-card-info {
+
   }
 `
