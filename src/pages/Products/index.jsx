@@ -1,5 +1,7 @@
 import { Container, Content, ContentLeft, ContentRight } from './styles'
 
+import { api } from '../../services/api'
+
 //Components	
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
@@ -13,8 +15,32 @@ import { HiOutlineChevronLeft } from 'react-icons/hi'
 //Image example
 import imageMask from '../../assets/miniatures/dishes/bolo_de_damasco.png'
 
+//Hooks
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
-export function Details() {
+
+export function Products() {
+  const [name, setName] = useState();
+  const [price, setPrice] = useState();
+  const [description, setDescription] = useState();
+
+  const params = useParams();
+
+  useEffect(() => {
+    async function fetchProductDetails(req, res) {
+
+      console.log('teste')
+      
+      const response = await api.get(`/products?product_id=${params.product_id}`)
+      
+      console.log(response.data);
+    }
+
+    fetchProductDetails();
+
+  }, [])
+
   return (
     <Container>
       
@@ -32,13 +58,13 @@ export function Details() {
         </ContentLeft>
 
         <ContentRight>
-          <h2>Salada Ravanello</h2>
-          <p>Rabanetes, folhas verdes e milho agridoce salpicados com gergelim</p>
+          <h2>{ name }</h2>
+          <p>{ description }</p>
         
           <Ingredients />
 
           <div className="price-quantity">
-            <span>R$ 25,97 </span>
+            <span>R$ { price } </span>
             <NumberInput />
           </div>
 
