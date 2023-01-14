@@ -12,29 +12,35 @@ import { NumberInput } from '../../components/NumberInput'
 import { TbReceipt } from 'react-icons/tb'
 import { HiOutlineChevronLeft } from 'react-icons/hi'
 
-//Image example
-import imageMask from '../../assets/miniatures/dishes/bolo_de_damasco.png'
-
 //Hooks
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 
+
 export function Products() {
-  const [name, setName] = useState();
-  const [price, setPrice] = useState();
-  const [description, setDescription] = useState();
+  const [data, setData] = useState({})
 
   const params = useParams();
 
   useEffect(() => {
     async function fetchProductDetails(req, res) {
-
-      console.log('teste')
       
       const response = await api.get(`/products?product_id=${params.product_id}`)
+
+      const { name, price, description, image } = response.data[0];
+
+      const imageView = URL.createObjectURL(image);
+
+      console.log(imageView)
+
+      setData({
+        name,
+        price,
+        description,
+        image: imageView
+      })
       
-      console.log(response.data);
     }
 
     fetchProductDetails();
@@ -54,17 +60,17 @@ export function Products() {
       <Content>
 
         <ContentLeft>
-          <img src={ imageMask } alt="" />
+          <img src={ data.image }  alt="" />
         </ContentLeft>
 
         <ContentRight>
-          <h2>{ name }</h2>
-          <p>{ description }</p>
+          <h2>{ data.name }</h2>
+          <p>{ data.description }</p>
         
           <Ingredients />
 
           <div className="price-quantity">
-            <span>R$ { price } </span>
+            <span>R$ { data.price } </span>
             <NumberInput />
           </div>
 
