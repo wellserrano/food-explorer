@@ -22,7 +22,7 @@ export const Container = styled.div`
       margin-right: 1.2rem;
     }
   
-    > span {
+    span {
       color: ${ ({ theme }) => theme.COLORS.WHITE };
       font-size: 2.5rem;
       font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
