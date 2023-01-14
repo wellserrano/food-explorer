@@ -10,11 +10,15 @@ export function NumberInput({ ...rest }) {
       <ChangeButton>
         <FiMinus />
       </ChangeButton>
-      <Quantity type="Number" { ...rest } />
+      <Quantity 
+        type="Number"
+        placeholder={0}
+        { ...rest } 
+      />
       <ChangeButton>
         <FiPlus />  
       </ChangeButton>
-      <Button title="incluir" />
+      <Button title="incluir" { ...rest }/>
     </Container>
   )
 }

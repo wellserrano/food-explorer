@@ -37,18 +37,6 @@ export const Container = styled.div`
     align-items: center;
     flex-direction: column;
 
-    img {
-      width: 17.6rem;
-      height: 17.6rem;
-
-      margin-block: 1.7rem;
-    }
-
-    .dish-name {
-      color: ${({ theme }) => theme.COLORS.WHITE2 };
-      margin-bottom: 1.6rem;
-    }
-
     .dish-description {
       font-size: 1.4rem;
       font-weight: 400;
@@ -67,3 +55,27 @@ export const Money = styled.div`
   
   color: ${({ theme }) => theme.COLORS.MONEY };
 `;
+
+
+export const Test = styled.div`
+
+  img {
+    width: 17.6rem;
+    height: 17.6rem;
+
+    margin-block: 1.7rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .dish-name {
+    color: ${({ theme }) => theme.COLORS.WHITE2 };
+    margin-bottom: 1.6rem;    
+    
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`
