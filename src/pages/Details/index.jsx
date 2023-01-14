@@ -11,7 +11,7 @@ import { TbReceipt } from 'react-icons/tb'
 import { HiOutlineChevronLeft } from 'react-icons/hi'
 
 //Image example
-import imageMask from '../../assets/miniatures/Mask-group-1.png'
+import imageMask from '../../assets/miniatures/dishes/bolo_de_damasco.png'
 
 
 export function Details() {

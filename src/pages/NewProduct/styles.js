@@ -179,8 +179,8 @@ export const ImageUpload = styled.div`
   
       > svg {
         font-size: 2.4rem;
-      }
-    }
+      };
+    };
   }
 
 `;

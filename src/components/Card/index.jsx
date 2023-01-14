@@ -4,7 +4,7 @@ import { FiHeart } from 'react-icons/fi'
 
 import { NumberInput } from '../NumberInput'
 
-import imgTest from '../../assets/miniatures/Maskgroup-5.png'
+import imgTest from '../../assets/miniatures/dishes/bolo_de_damasco.png'
 
 
 export function Card({ data, ...rest }) {

@@ -1,6 +1,6 @@
 import { Container, Row, Delete, Total, Rows} from "./styles";
 
-import sampleImg from '../../assets/miniatures/Mask-group-10.png'
+import sampleImg from '../../assets/miniatures/dishes/bolo_de_damasco.png'
 
 export function OrderItems() {
   return (
