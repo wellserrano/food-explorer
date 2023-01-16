@@ -53,26 +53,29 @@ export function NewProduct() {
 
   async function handleAddNewProduct() {
 
+    const fileUploadForm = new FormData();
+    fileUploadForm.append("image", imageFile)
+      
+    //DiskStorage (saving image)
+    const response_image = await api.post('/products/image', fileUploadForm);
+    const dataImageName = response_image.data;
+
     const productData = {
       name, 
       description,
       price: value, 
-      image: imageFile.name
+      image: dataImageName
     };
 
-    console.log('imageFile', imageFile)
+    //Inserting product on DB
+    const response_product = await api.post('/products', productData);
 
-    const fileUploadForm = new FormData();
-    fileUploadForm.append("image", imageFile)
-      
-    const response = await api.post('/products', productData);
-    await api.post('/products/image', fileUploadForm);
+    const product_id = response_product.data;
 
-    const product_id = response.data[0]
+    //Inserting ingredients on DB
+    await api.post('/ingredients', { product_id, ingredients });
 
-    await api.post('/ingredients', { product_id, ingredients })
-
-    alert('Produto criado com sucesso')
+    alert('Produto criado com sucesso');
     
     refreshPage();
     
