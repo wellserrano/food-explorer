@@ -73,7 +73,7 @@ export function Products() {
 
           <div className="price-quantity">
             <span>R$ { data.price } </span>
-            <NumberInput />
+            <NumberInput product_id={ Number(params.product_id) } />
           </div>
 
         </ContentRight>
