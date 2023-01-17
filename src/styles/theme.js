@@ -14,7 +14,11 @@ export default {
     LIGHTGRAY: "#C4C4CC",
     MEDGRAY: "#7C7C8A",
 
+    DELETE: "#AB4D55",
+
     MONEY: "#82F3FF",
+
+    TABLE_BORDER: "#192227",
 
     GRADIENT_PANEL: "linear-gradient(180deg, #091E26 0%, #00131C 100%);",
 

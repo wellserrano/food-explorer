@@ -1,34 +1,28 @@
 import { Container } from './styles'
 
-//Images examples
-import peach from '../../assets/miniatures/peach.png'
-import radish from '../../assets/miniatures/radish.png'
-import tomatoes from '../../assets/miniatures/tomatoes.png'
-import passionfruit from '../../assets/miniatures/passionfruit.png'
+import { api } from '../../services/api'
 
-export function Ingredients() {
+
+export function Ingredients({ data }) {
+
   return (
     <Container>
 
-      <div className="ingredient">
-        <img src={ peach } alt="" />
-        <span>pêssego</span>
-      </div>
+      {
+        data &&
+        data.map( (element, index) => 
+          {
+            const imageIngredientURL = `${api.defaults.baseURL}/assets/ingredients/${ element }.png`
+            
+            return (
+              <div key={ index } className="ingredient">
+                <img src={ imageIngredientURL } alt="" />
+                <span>{ element }</span>
+              </div>
+            );
+          })
+      }
 
-      <div className="ingredient">
-        <img src={ radish } alt="" />
-        <span>rabanete</span>
-      </div>
-
-      <div className="ingredient">
-        <img src={ tomatoes } alt="" />
-        <span>tomates</span>
-      </div>
-
-      <div className="ingredient">
-        <img src={ passionfruit } alt="" />
-        <span>maracujá</span>
-      </div> 
     </Container>
   )
 }

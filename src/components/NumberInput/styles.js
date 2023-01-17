@@ -32,6 +32,10 @@ export const Quantity = styled.input`
 
   color: ${ ({ theme }) => theme.COLORS.WHITE};
 
+  &:hover {
+    cursor: default;
+  }
+
   &::placeholder {
     color: ${ ({ theme }) => theme.COLORS.WHITE2};
   }

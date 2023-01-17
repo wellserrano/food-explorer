@@ -4,6 +4,7 @@ import { useState } from "react";
 
 
 export function Carousel({ title, ...rest }) {
+
 const [ scrollVal, setScroll ] = useState(0)
 
   const dishesData = [
@@ -69,7 +70,4 @@ const [ scrollVal, setScroll ] = useState(0)
       </Container>
     )
   }
-
-
-    
 }
