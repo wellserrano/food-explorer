@@ -1,7 +1,10 @@
 import { Container, Dishes, LeftArrowButton, RightArrowButton } from "./styles";
 import { Card } from "../Card";
+import { useState } from "react";
+
 
 export function Carousel({ title, ...rest }) {
+const [ scrollVal, setScroll ] = useState(0)
 
   const dishesData = [
     {id: 1, title: 'Torradas de Parma1', description: 'Presunto de parma e rúcula em um pão com fermentação natural.', price: 25.97 },
@@ -17,8 +20,16 @@ export function Carousel({ title, ...rest }) {
    const cardsTotal = dishesData.length
    
   function clickBtn(a, b){
-    console.log('clickbtn', a)
+    console.log('clickbtn', scrollVal)
+    
+    let x = scrollVal + 15
+
+    setScroll(x)
+    document.getElementById('TheDishes').scrollLeft += 20;
+
+
   }
+
   if (cardsTotal < 4) {
     return (
       <Container>
@@ -36,33 +47,20 @@ export function Carousel({ title, ...rest }) {
   }
   else{
     return (
-      <Container>
+      <Container scrollLeft={scrollVal}>
         <p>{ title }</p>
         
-        <Dishes>
-          
-          
-          {/* <Card className='carousel-card-left-shadow' key={1} cardsTotal={cardsTotal} data={{
-                title: dishesData[0].title,
-                description: dishesData[0].description,
-                price: String(dishesData[0].price)
-          }} />  */}
-          {
-            dishesData.map( (card, idx) => {
-              // if ( idx == 0 || idx == cardsTotal-1 ) return 
-              return (<Card className='carousel-card-middle' key={card.id} cardsTotal={cardsTotal} data={{
-                title: card.title,
-                description: card.description,
-                price: String(card.price)
-              }} /> )
-            })
-          }
-          {/* <Card className="carousel-card-right-shadow" key={cardsTotal-1} cardsTotal={cardsTotal-1} data={{
-                title: dishesData[cardsTotal-1].title,
-                description: dishesData[cardsTotal-1].description,
-                price: String(dishesData[cardsTotal-1].price)
-          }} />  */}
-          
+        <Dishes id='TheDishes' >
+        {
+          dishesData.map( (card, idx) => {
+            // if ( idx == 0 || idx == cardsTotal-1 ) return 
+            return (<Card className='carousel-card-middle' key={card.id} cardsTotal={cardsTotal} data={{
+              title: card.title,
+              description: card.description,
+              price: String(card.price)
+            }} /> )
+          })
+        }
         </Dishes>
         <div className="carousel-arrows-container">
               <LeftArrowButton  onClick={() => clickBtn(33)} >.-</LeftArrowButton>

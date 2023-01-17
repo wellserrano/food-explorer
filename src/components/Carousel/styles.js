@@ -7,8 +7,6 @@ export const Container = styled.div`
   font-weight: 500;
   margin-block: 4.2rem .8rem;
   max-width: 112rem;
-  
-  
 
 .carousel-arrows-container{
   display: flex;
