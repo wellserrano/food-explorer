@@ -22,47 +22,19 @@ export function NumberInput({ product_id, ...rest }) {
   }
 
   function handleCart() {
-    if (!quantity) { 
-
-      return
-
+    if (!quantity) return;
+    
+    const item = { product_id, quantity };
+    const cart = JSON.parse(localStorage.getItem("@foodexp:cart")) || [];
+    
+    const index = cart.findIndex(i => i.product_id === item.product_id);
+    if (index !== -1) {
+      cart[index].quantity = quantity;
     } else {
-
-      const item = {
-        product_id,
-        quantity
-      }
-
-
-      const currentCart = localStorage.getItem("@foodexp:cart") ?? [];
-      
-      if (currentCart.length > 0) {
-        const arrayCurrentCart = JSON.parse(currentCart);
-        
-        const updatedData = arrayCurrentCart.find(obj => obj.product_id === item.product_id) ?? false
-        const filteredCart = arrayCurrentCart.filter(obj => obj.product_id !== item.product_id)
-        
-        if (updatedData) {
-          updatedData.quantity = item.quantity
-          filteredCart.push(updatedData)
-          localStorage.setItem("@foodexp:cart", JSON.stringify(filteredCart))
-        
-        } else {
-          arrayCurrentCart.push(item)
-          localStorage.setItem("@foodexp:cart", JSON.stringify(arrayCurrentCart))
-        }
-
-        
-        
-      } else {
-        const arrayItems = new Array();
-        arrayItems.push(item)
-        localStorage.setItem("@foodexp:cart", JSON.stringify(arrayItems))
-    
-      }
-
-    
+      cart.push(item);
     }
+  
+    localStorage.setItem("@foodexp:cart", JSON.stringify(cart));
     
   };
 
