@@ -24,7 +24,7 @@ export function Products() {
   const params = useParams();
 
   useEffect(() => {
-    async function fetchProductDetails(req, res) {
+    async function fetchProductDetails() {
       
       const response = await api.get(`/products?product_id=${params.product_id}`)
 
