@@ -1,4 +1,4 @@
-import { Container, Money, Test } from "./styles";
+import { Container, Money, ProductHeader } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 
 import { FiHeart } from 'react-icons/fi'
@@ -12,7 +12,7 @@ export function Card({ data, ...rest }) {
   const navigate = useNavigate();
 
   function handleFavorite() {
-    console.log(data)
+    console.log(data.product_id)
   }
 
   function handleProductDetails(id) {
@@ -29,18 +29,18 @@ export function Card({ data, ...rest }) {
       </div>
 
       <main>
-       
-        <Test onClick={() => handleProductDetails(1)}>
+        <ProductHeader onClick={() => handleProductDetails(data.product_id)}>
           <img src={ imgTest } alt="" />
           <p className="dish-name">{ data.title } &gt; </p>
-        </Test> 
+        </ProductHeader> 
 
         <p className="dish-description">{ data.description }</p>
         <Money>
           <span>R$ </span>{ data.price.replaceAll('.', ',') }
         </Money>
       </main>
-        <NumberInput />
+
+      <NumberInput product_id={ data.product_id } />
       
     </Container>
   )

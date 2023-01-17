@@ -40,18 +40,19 @@ export function NumberInput({ product_id, ...rest }) {
         const arrayCurrentCart = JSON.parse(currentCart);
         
         const updatedData = arrayCurrentCart.find(obj => obj.product_id === item.product_id) ?? false
+        const filteredCart = arrayCurrentCart.filter(obj => obj.product_id !== item.product_id)
         
         if (updatedData) {
-          console.log('mexi em algo que já tinha', updatedData)
           updatedData.quantity = item.quantity
-          arrayCurrentCart.push(updatedData)
+          filteredCart.push(updatedData)
+          localStorage.setItem("@foodexp:cart", JSON.stringify(filteredCart))
         
         } else {
           arrayCurrentCart.push(item)
+          localStorage.setItem("@foodexp:cart", JSON.stringify(arrayCurrentCart))
         }
 
         
-        localStorage.setItem("@foodexp:cart", JSON.stringify(arrayCurrentCart))
         
       } else {
         const arrayItems = new Array();

@@ -57,7 +57,7 @@ export const Money = styled.div`
 `;
 
 
-export const Test = styled.div`
+export const ProductHeader = styled.div`
 
   img {
     width: 17.6rem;
