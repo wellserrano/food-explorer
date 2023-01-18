@@ -25,14 +25,17 @@ export function Home() {
       
         <Carousel
           title='Pratos principais'
+          category='principal'
         />
 
         <Carousel 
           title='Sobremesas'
+          category='sobremesa'
         />
 
         <Carousel 
           title='Bebidas'
+          category='bebida'
         />
       
       </Content>

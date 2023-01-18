@@ -13,13 +13,12 @@ export function Favorites() {
       <Content>
 
         <Carousel
-          title='FAVORTITOS'
+          title='Favoritos'
         />
 
       </Content>
 
       <Footer />
-
       
     </Container>
   )
