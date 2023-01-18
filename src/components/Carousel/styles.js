@@ -8,22 +8,22 @@ export const Container = styled.div`
   margin-block: 4.2rem .8rem;
   max-width: 112rem;
 
-.carousel-arrows-container{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  width: 112rem;
-  top: 50%;
-}
 `;
 
 export const Dishes = styled.div`
-  position: relative;
   display: flex;
   justify-content: left;
   gap: 2.7rem;
   overflow-x: scroll;
   max-width: 100%;
+
+  .carousel-arrows-container{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 112rem;
+    top: 50%;
+  }
   
 `;
 

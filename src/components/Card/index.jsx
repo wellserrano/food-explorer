@@ -5,18 +5,19 @@ import { FiHeart } from 'react-icons/fi'
 
 import { NumberInput } from '../NumberInput'
 
-import imgTest from '../../assets/miniatures/dishes/bolo_de_damasco.png'
-
+import { api } from '../../services/api'
 
 export function Card({ data, ...rest }) {
   const navigate = useNavigate();
 
+  
+  const imageDishURL = `${api.defaults.baseURL}/files/${ data.image }`
+
   function handleFavorite() {
-    console.log(data.product_id)
+    console.log(data)
   }
 
   function handleProductDetails(id) {
-
     navigate(`/products/${id}`)
   }
 
@@ -29,8 +30,8 @@ export function Card({ data, ...rest }) {
       </div>
 
       <main>
-        <ProductHeader onClick={() => handleProductDetails(data.product_id)}>
-          <img src={ imgTest } alt="" />
+        <ProductHeader onClick={ () => handleProductDetails(data.product_id) }>
+          <img src={ imageDishURL } alt="" />
           <p className="dish-name">{ data.title } &gt; </p>
         </ProductHeader> 
 
