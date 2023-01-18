@@ -23,31 +23,31 @@ export function Carousel({ title, category, ...rest }) {
   }, []);
 
   return (
-    <Container>
-      { title }
-      <Dishes>
-        {
-          data.length > 4 &&
-          <div className="carousel-arrows-container">
+    <Container className="CONTAINER">
+      <h3 className="TITLE">{ title }</h3>
+        <Dishes className="DISHES">
+          {
+            data.length > 4 &&
+            <div className="in-row">
               <LeftArrowButton  onClick={() => clickBtn(33)} >.-</LeftArrowButton>
               <RightArrowButton onClick={() => clickBtn(33)} >-.</RightArrowButton>
-          </div>
-        }
-        {
-          data &&
-          data.map( dish => (
-            <Card 
-              data={{
-                title:          dish.name,
-                description:    dish.description,
-                price:          String(dish.price),
-                product_id:     dish.product_id,
-                image:          dish.image,
-              }}
-            />
-          ))
-        }
-      </Dishes>
+            </div>
+          }
+          {
+            data &&
+            data.map( dish => (
+              <Card 
+                data={{
+                  title:          dish.name,
+                  description:    dish.description,
+                  price:          String(dish.price),
+                  product_id:     dish.product_id,
+                  image:          dish.image,
+                }}
+              />
+            ))
+          }
+        </Dishes>
     </Container>
   )
    
