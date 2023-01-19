@@ -2,9 +2,9 @@ import { Container, Button } from './styles'
 
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 
-export function ScrollButton({direction}) {
+export function ScrollButton({direction, ...rest}) {
   return (
-    <Container direction={direction}>
+    <Container direction={direction} {...rest}>
       <Button>
           {
             direction === 'right' ? 

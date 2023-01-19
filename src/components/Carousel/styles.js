@@ -25,7 +25,7 @@ export const Dishes = styled.div`
   display: flex;
   justify-content: left;
   gap: 2.7rem;
-  overflow: hidden;
+  overflow-x: hidden;
 
   width: 100%;
   align-items: center;

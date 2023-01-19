@@ -3,17 +3,34 @@ import { Container, Dishes } from "./styles";
 // import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 
 import { Card } from "../Card";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { api } from '../../services/api'
 
 import { ScrollButton } from "../ScrollButton";
 
-
 export function Carousel({ title, category, ...rest }) {
-
-  const [ scrollVal, setScroll ] = useState(0)
+  
+  const dishesRef = useRef(null)
+  const [ scrollValue, setScrollValue ] = useState(0)
   const [ data, setData ] = useState([]);
+
+  function moveLeft() {
+    if (scrollValue > 0) {
+      setScrollValue(prevState => prevState -20)
+      dishesRef.current.scrollLeft = scrollValue;
+      console.log('scrollValue', scrollValue, 'ref', dishesRef.current)
+
+    }
+  };
+
+  function moveRight() {
+    if (scrollValue < 100) {
+      setScrollValue(prevState => prevState +20)
+      dishesRef.current.scrollLeft = scrollValue;
+      console.log('scrollValue', scrollValue, 'ref', dishesRef.current)
+    }
+  };
 
 
   useEffect(() => {
@@ -31,13 +48,14 @@ export function Carousel({ title, category, ...rest }) {
         <h3>{ title }</h3>
           <div className="dishes-container">
             {
-              <ScrollButton direction='left'/>
+              <ScrollButton onClick={ moveLeft } direction='left'/>
             }
-              <Dishes>
+              <Dishes ref={ dishesRef }>
                 {
                   data &&
-                  data.map( dish => (
+                  data.map( (dish, i) => (
                     <Card 
+                      key={`${dish.name}-${i}`}
                       data={{
                         title:          dish.name,
                         description:    dish.description,
@@ -50,7 +68,7 @@ export function Carousel({ title, category, ...rest }) {
                   }
               </Dishes>
             {           
-              <ScrollButton direction='right'/>
+              <ScrollButton onClick={ moveRight } direction='right'/>
             } 
           </div>
     </Container>
