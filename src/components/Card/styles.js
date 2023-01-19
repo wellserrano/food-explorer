@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
-  width: 32rem;
+  min-width: 32rem;
   height: 51.2rem;
 
   font-size: 2.4rem;
@@ -11,8 +12,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
-  margin-top: 3.9rem;
+  
   padding: 2.6rem 2.25rem 3.6rem;
 
   background-color: rgba(0, 0, 0, 0.32);

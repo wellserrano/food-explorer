@@ -1,9 +1,13 @@
-import { Container, Dishes, LeftArrowButton, RightArrowButton } from "./styles";
+import { Container, Dishes } from "./styles";
+
+// import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 
 import { Card } from "../Card";
 import { useEffect, useState } from "react";
 
 import { api } from '../../services/api'
+
+import { ScrollButton } from "../ScrollButton";
 
 
 export function Carousel({ title, category, ...rest }) {
@@ -23,38 +27,74 @@ export function Carousel({ title, category, ...rest }) {
   }, []);
 
   return (
-    <Container className="CONTAINER">
-      <h3 className="TITLE">{ title }</h3>
-        <Dishes className="DISHES">
-          {
-            data.length > 4 &&
-            <div className="in-row">
-              <LeftArrowButton  onClick={() => clickBtn(33)} >.-</LeftArrowButton>
-              <RightArrowButton onClick={() => clickBtn(33)} >-.</RightArrowButton>
-            </div>
-          }
-          {
-            data &&
-            data.map( dish => (
-              <Card 
-                data={{
-                  title:          dish.name,
-                  description:    dish.description,
-                  price:          String(dish.price),
-                  product_id:     dish.product_id,
-                  image:          dish.image,
-                }}
-              />
-            ))
-          }
-        </Dishes>
+    <Container>
+        <h3>{ title }</h3>
+          <div className="dishes-container">
+            {
+              <ScrollButton direction='left'/>
+            }
+              <Dishes>
+                {
+                  data &&
+                  data.map( dish => (
+                    <Card 
+                      data={{
+                        title:          dish.name,
+                        description:    dish.description,
+                        price:          String(dish.price),
+                        product_id:     dish.product_id,
+                        image:          dish.image,
+                      }}
+                    />
+                    ))
+                  }
+              </Dishes>
+            {           
+              <ScrollButton direction='right'/>
+            } 
+          </div>
     </Container>
   )
    
 
 
 
-
+// last try:
+// return (
+//   <Container>
+//       <h3>{ title }</h3>
+//       <div className="dishes-container">
+//         {
+//           data.length > 4 &&
+//           <div className="button-scroll-container">
+//             <LeftArrowButton  onClick={() => clickBtn(33)} > <AiOutlineRight style={{color: 'white', fontSize: '2.75rem'}} /> </LeftArrowButton>
+//           </div>
+//         }
+//         <Dishes>
+//           {
+//             data &&
+//             data.map( dish => (
+//               <Card 
+//               data={{
+//                 title:          dish.name,
+//                 description:    dish.description,
+//                 price:          String(dish.price),
+//                 product_id:     dish.product_id,
+//                 image:          dish.image,
+//               }}
+//               />
+//               ))
+//             }
+//         </Dishes>
+//         {
+//           data.length > 4 &&
+//           <div className="button-scroll-container">
+//             <RightArrowButton onClick={() => clickBtn(33)} > <AiOutlineLeft style={{color: 'white', fontSize: '2.75rem'}} /> </RightArrowButton>
+//           </div>
+//         }
+//       </div>
+//   </Container>
+// )
 
   // function clickBtn(a, b){
   //   console.log('clickbtn', scrollVal)
