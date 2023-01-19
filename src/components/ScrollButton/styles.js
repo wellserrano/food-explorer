@@ -17,6 +17,7 @@ export const Container = styled.div`
   `background: linear-gradient(270deg, transparent 0%, #000A0F 100%);`}
 
   transform: matrix(-1, 0, 0, 1, 0, 0);
+
 `;
 
 export const Button = styled.button`
