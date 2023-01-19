@@ -60,7 +60,7 @@ export function Carousel({ title, category, ...rest }) {
                         title:          dish.name,
                         description:    dish.description,
                         price:          String(dish.price),
-                        product_id:     dish.product_id,
+                        product_id:     dish.id,
                         image:          dish.image,
                       }}
                     />
