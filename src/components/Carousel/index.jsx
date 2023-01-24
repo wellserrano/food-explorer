@@ -4,12 +4,14 @@ import { Container, Dishes } from "./styles";
 
 import { Card } from "../Card";
 import { useEffect, useState, useRef } from "react";
+import { useAuth } from "../../hooks/auth";
 
 import { api } from '../../services/api'
 
 import { ScrollButton } from "../ScrollButton";
 
 export function Carousel({ title, category, ...rest }) {
+  const { user } = useAuth();
   
   const dishesRef = useRef(null)
   const [data, setData] = useState([]);
@@ -31,7 +33,10 @@ export function Carousel({ title, category, ...rest }) {
   useEffect(() => {
 
     async function fetchDishesData() {
-      const response = await api.get(`/dishes?category=${category}`)
+      const response = await api.get(`/dishes?category=${category}`, {
+        params: {user_id: user.id}
+      })
+
       setData(response.data)
     }
     
@@ -61,6 +66,7 @@ export function Carousel({ title, category, ...rest }) {
                       price:          String(dish.price),
                       product_id:     dish.id,
                       image:          dish.image,
+                      isFavorite:     dish.isFavorite
                     }}
                   />
                   ))
