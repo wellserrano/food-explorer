@@ -14,7 +14,7 @@ export function Card({ data, ...rest }) {
   const imageDishURL = `${api.defaults.baseURL}/files/${ data.image }`
 
   function handleFavorite() {
-    console.log(data)
+    console.log(scrollMaxValue)
   }
 
   function handleProductDetails(id) {

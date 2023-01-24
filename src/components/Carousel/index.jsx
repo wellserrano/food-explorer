@@ -12,54 +12,63 @@ import { ScrollButton } from "../ScrollButton";
 export function Carousel({ title, category, ...rest }) {
   
   const dishesRef = useRef(null)
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
+  const [scrollMaxValue, setScrollMaxValue] = useState(0);
+
 
   function moveRight() {
     dishesRef.current.scrollLeft = dishesRef.current.scrollLeft - 500;
+    setScrollMaxValue(dishesRef.current.scrollLeft)
+
   };
 
-  function moveLeft() {  
+  function moveLeft() { 
     dishesRef.current.scrollLeft = dishesRef.current.scrollLeft + 500;
+    setScrollMaxValue(dishesRef.current.scrollLeft)
   };
 
 
   useEffect(() => {
-    
+
     async function fetchDishesData() {
       const response = await api.get(`/dishes?category=${category}`)
       setData(response.data)
     }
-
+    
     fetchDishesData();
   }, []);
+
+  useEffect(() => {
+    dishesRef.current.scrollLeft
+  }, [scrollMaxValue])
 
   return (
     <Container>
         <h3>{ title }</h3>
           <div className="dishes-container">
-            {
-              <ScrollButton onClick={ moveLeft } direction='left'/>
-            }
-              <Dishes ref={ dishesRef }>
-                {
-                  data &&
-                  data.map( (dish, i) => (
-                    <Card 
-                      key={`${dish.name}-${i}`}
-                      data={{
-                        title:          dish.name,
-                        description:    dish.description,
-                        price:          String(dish.price),
-                        product_id:     dish.id,
-                        image:          dish.image,
-                      }}
-                    />
-                    ))
-                  }
-              </Dishes>
-            {           
-              <ScrollButton onClick={ moveRight } direction='right'/>
-            } 
+
+            <ScrollButton onClick={ moveLeft } direction='left'/>
+
+            <Dishes ref={ dishesRef }>
+              {
+                data &&
+                data.map( (dish, i) => (
+                  <Card 
+                    key={`${dish.name}-${i}`}
+                    data={{
+                      title:          dish.name,
+                      description:    dish.description,
+                      price:          String(dish.price),
+                      product_id:     dish.id,
+                      image:          dish.image,
+                    }}
+                  />
+                  ))
+                }
+            </Dishes>
+                    
+            <ScrollButton onClick={ moveRight } direction='right'/>
+            
           </div>
     </Container>
   )
