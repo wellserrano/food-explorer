@@ -23,12 +23,15 @@ export const Container = styled.div`
 
 export const Dishes = styled.div`
   display: flex;
-  justify-content: left;
+  /* justify-content: left; */
   gap: 2.7rem;
-  overflow-x: hidden;
-
+  
   width: 100%;
   align-items: center;
+  
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
   
 `;
 

@@ -12,24 +12,14 @@ import { ScrollButton } from "../ScrollButton";
 export function Carousel({ title, category, ...rest }) {
   
   const dishesRef = useRef(null)
-  const [ scrollValue, setScrollValue ] = useState(0)
   const [ data, setData ] = useState([]);
 
-  function moveLeft() {
-    if (scrollValue > 0) {
-      setScrollValue(prevState => prevState -20)
-      dishesRef.current.scrollLeft = scrollValue;
-      console.log('scrollValue', scrollValue, 'ref', dishesRef.current)
-
-    }
+  function moveRight() {
+    dishesRef.current.scrollLeft = dishesRef.current.scrollLeft - 500;
   };
 
-  function moveRight() {
-    if (scrollValue < 100) {
-      setScrollValue(prevState => prevState +20)
-      dishesRef.current.scrollLeft = scrollValue;
-      console.log('scrollValue', scrollValue, 'ref', dishesRef.current)
-    }
+  function moveLeft() {  
+    dishesRef.current.scrollLeft = dishesRef.current.scrollLeft + 500;
   };
 
 
