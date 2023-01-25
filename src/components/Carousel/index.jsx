@@ -1,7 +1,5 @@
 import { Container, Dishes } from "./styles";
 
-// import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
-
 import { Card } from "../Card";
 import { useEffect, useState, useRef } from "react";
 import { useAuth } from "../../hooks/auth";
@@ -11,10 +9,11 @@ import { api } from '../../services/api'
 import { ScrollButton } from "../ScrollButton";
 
 export function Carousel({ title, category, ...rest }) {
-  const { user } = useAuth();
-  
-  const dishesRef = useRef(null)
   const [data, setData] = useState([]);
+
+  const dishesRef = useRef(null)
+  
+  const { user } = useAuth();
 
   function moveRight() {
     dishesRef.current.scrollLeft = dishesRef.current.scrollLeft - 500;

@@ -1,19 +1,18 @@
-import { Container, AdminButton, Blank } from './styles'
+import { Container, AdminButton } from './styles'
 import { Link } from 'react-router-dom'
 
 //Components
 import { Button } from '../Button'
-import { SearchInput } from '../SearchInput'
 
 //Icons
-import { FiLogOut, FiSearch } from 'react-icons/fi'
+import { FiLogOut } from 'react-icons/fi'
 import { TbReceipt } from 'react-icons/tb'
 
 //hooks
 import { useAuth } from '../../hooks/auth'
 
 
-export function Header() {
+export function Header({ children }) {
   const { user, signOut } = useAuth();
 
   function handleLogOut() {
@@ -31,7 +30,7 @@ export function Header() {
 
       <a href="/favorites">Meus favoritos</a>
 
-      <SearchInput className="search-input" icon={ FiSearch }/>
+      { children }
 
       {
         user.admin ? 

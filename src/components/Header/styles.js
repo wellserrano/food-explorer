@@ -39,16 +39,12 @@ export const Container = styled.div`
 
   }
 
-  .search-input {
-    margin-right: 3.2rem;
-  }
-
   > button {
     display: flex;
     width: 21.6rem;
 
     padding: 1.2rem 3.3rem;
-    margin-right: 3.2rem;
+    margin-inline: 3.2rem;
 
   }
 
@@ -67,9 +63,4 @@ export const Container = styled.div`
 export const AdminButton = styled(Link)`
   display: flex;
   align-items: center;
-`
-
-export const Blank = styled.div`
-  width: 200px;
-  background-color: red;
 `
