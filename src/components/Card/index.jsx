@@ -1,20 +1,36 @@
 import { Container, Money, ProductHeader } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useEffect, useState } from 'react'
+
 import { FiHeart } from 'react-icons/fi'
+import { FaHeart } from 'react-icons/fa'
 
 import { NumberInput } from '../NumberInput'
 
 import { api } from '../../services/api'
+import { useAuth } from "../../hooks/auth";
 
 export function Card({ data, ...rest }) {
+  const [isFavorite, setIsFavorite] = useState(data.favorite_id > 0)
+  const { user } = useAuth();
+  
   const navigate = useNavigate();
 
-  
   const imageDishURL = `${api.defaults.baseURL}/files/${ data.image }`
 
-  function handleFavorite() {
-    console.log(scrollMaxValue)
+  async function handleFavorite() {
+    setIsFavorite(!isFavorite)
+
+    if (isFavorite) {
+      console.log('delete', isFavorite, data)
+      await api.delete(`/favorites?id=${data.favorite_id}`)
+      data.favorite_id = null;
+    } else {
+      console.log('add', isFavorite, data)
+      const favoriteId = await api.post('/favorites', {favoriteInfo: { user_id: user.id, product_id: data.product_id }})
+      data.favorite_id = favoriteId.data;
+    }
   }
 
   function handleProductDetails(id) {
@@ -24,9 +40,11 @@ export function Card({ data, ...rest }) {
   return (
     <Container { ...rest }>
       <div className="favorite">
-        <FiHeart 
-          onClick={handleFavorite}
-        />
+        <div onClick={ handleFavorite }>
+          {
+          isFavorite ? <FaHeart /> : <FiHeart /> 
+          }
+        </div>
       </div>
 
       <main>

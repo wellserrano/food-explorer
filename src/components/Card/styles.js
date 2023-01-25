@@ -26,7 +26,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-end;
 
-    >svg {
+    svg {
       cursor: pointer;
     }
   }

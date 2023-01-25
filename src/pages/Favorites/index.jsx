@@ -14,6 +14,7 @@ export function Favorites() {
 
         <Carousel
           title='Favoritos'
+          category='favoritos'
         />
 
       </Content>
