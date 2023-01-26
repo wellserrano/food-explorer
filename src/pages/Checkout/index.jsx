@@ -21,7 +21,6 @@ export function Checkout() {
       setItemsData(response.data);
     }
 
-
     fetchItemDetails();
   }, [])
 

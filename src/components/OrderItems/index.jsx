@@ -1,7 +1,17 @@
 import { Container, Row, Delete, Total, Rows} from "./styles";
 import { api } from "../../services/api";
+import { useEffect, useState } from "react";
 
 export function OrderItems({ data }) {
+  const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+
+    const totalPrice = data.reduce((accumulator, currentValue) => accumulator + currentValue['price'], 0)
+
+    setTotal(totalPrice)
+
+  }, [])
 
   return (
     <Container>
@@ -32,7 +42,7 @@ export function OrderItems({ data }) {
    
 
       <Total>
-        <span>Total: R$ {data.total}</span>
+        <span>Total: R$ { total }</span>
       </Total>
 
     </Container>
