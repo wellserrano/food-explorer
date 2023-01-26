@@ -35,6 +35,16 @@ function AuthProvider({ children }) {
     setData({});
   }
 
+  function fetchOrderedItems() {
+    const cartItemsStorage = localStorage.getItem("@foodexp:cart")
+    const arrayItems = JSON.parse(cartItemsStorage)
+    return arrayItems;
+  }
+
+  function dropOrderedItems() {
+    localStorage.removeItem("@foodexp:cart")
+  }
+
 
   useEffect(() => {
     const token = localStorage.getItem('@foodexp:token')
@@ -55,7 +65,9 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{ 
       user: data.user,
       signIn,
-      signOut
+      signOut,
+      fetchOrderedItems,
+      dropOrderedItems
     }}>
       { children }
     </AuthContext.Provider>
