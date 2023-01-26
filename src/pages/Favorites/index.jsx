@@ -9,7 +9,7 @@ export function Favorites() {
   return (
     <Container>
       <Header />
-      
+
       <Content>
 
         <Carousel

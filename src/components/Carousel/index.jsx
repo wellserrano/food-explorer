@@ -8,7 +8,7 @@ import { api } from '../../services/api'
 
 import { ScrollButton } from "../ScrollButton";
 
-export function Carousel({ title, category, ...rest }) {
+export function Carousel({ title, category, searchData, ...rest }) {
   const [data, setData] = useState([]);
 
   const dishesRef = useRef(null)
@@ -28,6 +28,10 @@ export function Carousel({ title, category, ...rest }) {
 
     async function fetchDishesData() {
       let response;
+
+      if (category === 'search') {
+        return setData(searchData)
+      }
 
       if (category === 'favoritos') {
         response = await api.get(`/favorites/?id=${user.id}`)
@@ -55,7 +59,8 @@ export function Carousel({ title, category, ...rest }) {
             <Dishes ref={ dishesRef }>
               {
                 data &&
-                data.map( (dish, i) => (
+                data.map( (dish, i) => {
+                  return (
                   <Card 
                     key={`${dish.name}-${i}`}
                     data={{
@@ -67,8 +72,8 @@ export function Carousel({ title, category, ...rest }) {
                       favorite_id:    dish.favorite_id
                     }}
                   />
-                  ))
-                }
+                  )})
+              }
             </Dishes>
                     
             <ScrollButton onClick={ moveRight } direction='right'/>

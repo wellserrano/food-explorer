@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   grid-area: content;
 
-  margin: 14.8rem auto 9.8rem;
+  margin: ${ ({ isSearching }) => isSearching.length === 0 ? `14.8rem auto 9.8rem` : `1.8rem auto 9.8rem`};
 
   color: ${ ({ theme }) => theme.COLORS.WHITE2 };
 

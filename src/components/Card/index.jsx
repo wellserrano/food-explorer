@@ -23,11 +23,9 @@ export function Card({ data, ...rest }) {
     setIsFavorite(!isFavorite)
 
     if (isFavorite) {
-      console.log('delete', isFavorite, data)
       await api.delete(`/favorites?id=${data.favorite_id}`)
       data.favorite_id = null;
     } else {
-      console.log('add', isFavorite, data)
       const favoriteId = await api.post('/favorites', {favoriteInfo: { user_id: user.id, product_id: data.product_id }})
       data.favorite_id = favoriteId.data;
     }
