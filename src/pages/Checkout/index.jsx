@@ -7,6 +7,7 @@ import { PaymentMethod } from '../../components/PaymentMethod'
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 export function Checkout() {
   const [itemsData, setItemsData] = useState([])
@@ -14,10 +15,12 @@ export function Checkout() {
   
   const { fetchOrderedItems } = useAuth();
 
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const itemStorage = fetchOrderedItems();
-    
+
     if (itemStorage.length) {
       async function fetchItemDetails() {
         const response = await api.get('/checkout', { params: { products: itemStorage }})
@@ -33,6 +36,8 @@ export function Checkout() {
       }
 
       fetchItemDetails();
+    } else {
+      navigate("/")
     }
   }, [])
 
