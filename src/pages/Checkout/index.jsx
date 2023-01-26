@@ -12,26 +12,28 @@ export function Checkout() {
   const [itemsData, setItemsData] = useState([])
   const [total, setTotal] = useState(0);
   
-  const { fetchOrderedItems, dropOrderedItems } = useAuth();
+  const { fetchOrderedItems } = useAuth();
 
 
   useEffect(() => {
     const itemStorage = fetchOrderedItems();
+    
+    if (itemStorage.length) {
+      async function fetchItemDetails() {
+        const response = await api.get('/checkout', { params: { products: itemStorage }})
 
-    async function fetchItemDetails() {
-      const response = await api.get('/checkout', { params: { products: itemStorage }})
+        setItemsData(response.data);
 
-      setItemsData(response.data);
+        const totalPrice = response.data.reduce(((accumulator, currentValue) => 
+        accumulator + (currentValue['price'] * currentValue['quantity'])), 0)
 
-      const totalPrice = response.data.reduce(((accumulator, currentValue) => 
-      accumulator + (currentValue['price'] * currentValue['quantity'])), 0)
+        
+        setTotal(totalPrice.toFixed(2))
 
-      
-      setTotal(totalPrice.toFixed(2))
+      }
 
+      fetchItemDetails();
     }
-
-    fetchItemDetails();
   }, [])
 
   return (

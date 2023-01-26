@@ -1,16 +1,25 @@
 import { Container, Row, Delete, Total, Rows} from "./styles";
 import { api } from "../../services/api";
-import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/auth";
 
 export function OrderItems({ data, total }) {
+  const { dropItem } = useAuth();
+
+  const dataExists = data.length > 0;
+
+  function handleItemRemove(itemId) {
+    dropItem(itemId)
+    window.location.reload();
+  }
 
   return (
     <Container>
       <Rows>
         {
           data &&
-          data.map((item, i) =>  
-            <Row key={`${item.product_id}-${i}`}>
+          data.map((item, i) =>{
+            return (  
+            <Row key={`${item.name}-${i}`}>
               <img src={ `${api.defaults.baseURL}/files/${item.image}` } alt="" />
 
               <div className="in-column">
@@ -22,10 +31,10 @@ export function OrderItems({ data, total }) {
 
                 </div>
 
-                <Delete> Excluir </Delete>
+                <Delete onClick={() => handleItemRemove(item.id) }> Excluir </Delete>
               </div>
-            </Row>
-          )
+            </Row>)
+            })
         }
         
         

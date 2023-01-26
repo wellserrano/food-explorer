@@ -41,8 +41,16 @@ function AuthProvider({ children }) {
     return arrayItems;
   }
 
-  function dropOrderedItems() {
-    localStorage.removeItem("@foodexp:cart")
+  function dropItem(id) {
+    const currentItems = JSON.parse(localStorage.getItem("@foodexp:cart"));
+    console.log('id', id)
+
+    const newCart = currentItems.filter(item => item.product_id !== id);
+
+    console.log('nre', newCart)
+
+    localStorage.setItem("@foodexp:cart", JSON.stringify(newCart));
+
   }
 
 
@@ -67,7 +75,7 @@ function AuthProvider({ children }) {
       signIn,
       signOut,
       fetchOrderedItems,
-      dropOrderedItems
+      dropItem
     }}>
       { children }
     </AuthContext.Provider>
