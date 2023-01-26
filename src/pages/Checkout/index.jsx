@@ -23,8 +23,11 @@ export function Checkout() {
 
       setItemsData(response.data);
 
-      const totalPrice = response.data.reduce((accumulator, currentValue) => accumulator + currentValue['price'], 0)
-      setTotal(totalPrice)
+      const totalPrice = response.data.reduce(((accumulator, currentValue) => 
+      accumulator + (currentValue['price'] * currentValue['quantity'])), 0)
+
+      
+      setTotal(totalPrice.toFixed(2))
 
     }
 
