@@ -1,24 +1,36 @@
-import { Container, AdminButton, Blank } from './styles'
-import { Link } from 'react-router-dom'
+import { Container, AdminButton } from './styles'
+import { Link, useNavigate } from 'react-router-dom'
 
 //Components
 import { Button } from '../Button'
-import { SearchInput } from '../SearchInput'
 
 //Icons
-import { FiLogOut, FiSearch } from 'react-icons/fi'
+import { FiLogOut } from 'react-icons/fi'
 import { TbReceipt } from 'react-icons/tb'
 
 //hooks
 import { useAuth } from '../../hooks/auth'
+import { useEffect, useState } from 'react'
 
 
-export function Header() {
-  const { user, signOut } = useAuth();
+export function Header({ children }) {
+  const [items, setItems] = useState([])
+  const { user, signOut, fetchOrderedItems } = useAuth();
+
+  const navigate = useNavigate();
 
   function handleLogOut() {
     signOut();
   }
+
+  function handleCartButton() {
+    navigate('/checkout')
+  }
+
+  useEffect(() => {
+    const items = fetchOrderedItems();
+    setItems(items)
+  }, [])
 
   return (
     <Container>
@@ -31,14 +43,17 @@ export function Header() {
 
       <a href="/favorites">Meus favoritos</a>
 
-      <SearchInput className="search-input" icon={ FiSearch }/>
+      { children }
 
       {
         user.admin ? 
-        <AdminButton to="/newproduct">Administrador</AdminButton> :
+        <AdminButton to="/newproduct">Administrador</AdminButton>
+        
+        :
         <Button 
-          title="Meu pedido (0)" 
-          icon={ TbReceipt } 
+          title={`Meu pedido (${items.length})`}
+          icon={ TbReceipt }
+          onClick={ handleCartButton }
         />
       }
 

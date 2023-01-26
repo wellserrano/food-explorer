@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   grid-area: content;
 
-  margin: 14.8rem 12.4rem 9.8rem;
+  margin: 0 auto 9.8rem;
 
   color: ${ ({ theme }) => theme.COLORS.WHITE2 };
 

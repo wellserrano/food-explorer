@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
-  width: 32rem;
+  min-width: 32rem;
   height: 51.2rem;
 
   font-size: 2.4rem;
@@ -11,8 +12,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
-  margin-top: 3.9rem;
+  
   padding: 2.6rem 2.25rem 3.6rem;
 
   background-color: rgba(0, 0, 0, 0.32);
@@ -25,8 +25,9 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-right: 3.2rem;
 
-    >svg {
+    svg {
       cursor: pointer;
     }
   }
@@ -57,7 +58,7 @@ export const Money = styled.div`
 `;
 
 
-export const Test = styled.div`
+export const ProductHeader = styled.div`
 
   img {
     width: 17.6rem;

@@ -39,6 +39,7 @@ export function SignIn() {
           onChange={ e => setEmail(e.target.value) }
         />
         <TextInput 
+          type='password'
           caption='Senha' 
           placeholder='Mínimo 6 caracteres'
           onChange={ e => setPassword(e.target.value) }

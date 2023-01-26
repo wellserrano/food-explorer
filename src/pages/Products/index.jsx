@@ -19,33 +19,35 @@ import { useParams } from 'react-router-dom'
 
 
 export function Products() {
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
 
   const params = useParams();
 
   useEffect(() => {
-    async function fetchProductDetails(req, res) {
+    async function fetchProductDetails() {
       
       const response = await api.get(`/products?product_id=${params.product_id}`)
 
-      const { name, price, description, image } = response.data[0];
+      const { name, price, description, ingredients, image } = response.data;
 
-      const imageView = URL.createObjectURL(image);
-
-      console.log(imageView)
-
+      const imageDishURL = `${api.defaults.baseURL}/files/${image}`
+      
       setData({
         name,
         price,
         description,
-        image: imageView
+        ingredients,
+        image: imageDishURL
       })
+
+
       
     }
 
     fetchProductDetails();
 
   }, [])
+
 
   return (
     <Container>
@@ -67,11 +69,11 @@ export function Products() {
           <h2>{ data.name }</h2>
           <p>{ data.description }</p>
         
-          <Ingredients />
+          <Ingredients data={ data.ingredients } />
 
           <div className="price-quantity">
             <span>R$ { data.price } </span>
-            <NumberInput />
+            <NumberInput product_id={ Number(params.product_id) } />
           </div>
 
         </ContentRight>

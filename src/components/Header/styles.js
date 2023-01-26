@@ -11,17 +11,10 @@ export const Container = styled.div`
   height: 10.4rem;
   background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
-  > svg {
-    margin-right: 1.2rem;
-  }
-
-  > span {
-    color: ${ ({ theme }) => theme.COLORS.WHITE };
-    font-size: 2.5rem;
-    font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
-
-    margin-right: 3.7rem;
-    cursor: default;
+  .homeButton{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   > a {
@@ -31,10 +24,19 @@ export const Container = styled.div`
 
     margin-right: 3.2rem;
 
-  }
+    > svg {
+      margin-right: 1.2rem;
+    }
+  
+    > span {
+      color: ${ ({ theme }) => theme.COLORS.WHITE };
+      font-size: 2.5rem;
+      font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+  
+      margin-right: 3.7rem;
+      cursor: pointer;
+    }
 
-  .search-input {
-    margin-right: 3.2rem;
   }
 
   > button {
@@ -42,7 +44,7 @@ export const Container = styled.div`
     width: 21.6rem;
 
     padding: 1.2rem 3.3rem;
-    margin-right: 3.2rem;
+    margin-inline: 3.2rem;
 
   }
 
@@ -61,9 +63,4 @@ export const Container = styled.div`
 export const AdminButton = styled(Link)`
   display: flex;
   align-items: center;
-`
-
-export const Blank = styled.div`
-  width: 200px;
-  background-color: red;
 `

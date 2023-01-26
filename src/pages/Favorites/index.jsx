@@ -9,17 +9,17 @@ export function Favorites() {
   return (
     <Container>
       <Header />
-      
+
       <Content>
 
         <Carousel
-          title='FAVORTITOS'
+          title='Favoritos'
+          category='favoritos'
         />
 
       </Content>
 
       <Footer />
-
       
     </Container>
   )
