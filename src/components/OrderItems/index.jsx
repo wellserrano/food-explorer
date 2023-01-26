@@ -1,32 +1,38 @@
 import { Container, Row, Delete, Total, Rows} from "./styles";
+import { api } from "../../services/api";
 
-import sampleImg from '../../assets/miniatures/dishes/bolo_de_damasco.png'
+export function OrderItems({ data }) {
 
-export function OrderItems() {
   return (
     <Container>
       <Rows>
-        <Row>
-          <img src={ sampleImg } alt="" />
+        {
+          data &&
+          data.map((item, i) =>  
+            <Row key={`${item.product_id}-${i}`}>
+              <img src={ `${api.defaults.baseURL}/files/${item.image}` } alt="" />
 
-          <div className="in-column">
+              <div className="in-column">
 
-            <div className="in-line">
+                <div className="in-line">
 
-              <p>1 x&nbsp;&nbsp;&nbsp;Salada Radish</p>
-              <span>R$ 25,82</span>
+                  <p>{item.quantity} x&nbsp;&nbsp;&nbsp;{item.name}</p>
+                  <span>R$ {item.price}</span>
 
-            </div>
+                </div>
 
-            <Delete> Excluir </Delete>
-          </div>
-        </Row>
+                <Delete> Excluir </Delete>
+              </div>
+            </Row>
+          )
+        }
+        
         
       </Rows>
    
 
       <Total>
-        <span>Total: R$ 105,30</span>
+        <span>Total: R$ {data.total}</span>
       </Total>
 
     </Container>
