@@ -1,5 +1,5 @@
 import { Container, AdminButton } from './styles'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 //Components
 import { Button } from '../Button'
@@ -10,14 +10,27 @@ import { TbReceipt } from 'react-icons/tb'
 
 //hooks
 import { useAuth } from '../../hooks/auth'
+import { useEffect, useState } from 'react'
 
 
 export function Header({ children }) {
-  const { user, signOut } = useAuth();
+  const [items, setItems] = useState([])
+  const { user, signOut, fetchOrderedItems } = useAuth();
+
+  const navigate = useNavigate();
 
   function handleLogOut() {
     signOut();
   }
+
+  function handleCartButton() {
+    navigate('/checkout')
+  }
+
+  useEffect(() => {
+    const items = fetchOrderedItems();
+    setItems(items)
+  }, [])
 
   return (
     <Container>
@@ -34,10 +47,13 @@ export function Header({ children }) {
 
       {
         user.admin ? 
-        <AdminButton to="/newproduct">Administrador</AdminButton> :
+        <AdminButton to="/newproduct">Administrador</AdminButton>
+        
+        :
         <Button 
-          title="Meu pedido (0)" 
-          icon={ TbReceipt } 
+          title={`Meu pedido (${items.length})`}
+          icon={ TbReceipt }
+          onClick={ handleCartButton }
         />
       }
 
