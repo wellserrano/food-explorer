@@ -10,7 +10,10 @@ import { api } from '../../services/api';
 
 export function Checkout() {
   const [itemsData, setItemsData] = useState([])
+  const [total, setTotal] = useState(0);
+  
   const { fetchOrderedItems, dropOrderedItems } = useAuth();
+
 
   useEffect(() => {
     const itemStorage = fetchOrderedItems();
@@ -19,6 +22,10 @@ export function Checkout() {
       const response = await api.get('/checkout', { params: { products: itemStorage }})
 
       setItemsData(response.data);
+
+      const totalPrice = response.data.reduce((accumulator, currentValue) => accumulator + currentValue['price'], 0)
+      setTotal(totalPrice)
+
     }
 
     fetchItemDetails();
@@ -30,7 +37,7 @@ export function Checkout() {
 
       <Items>
         <h2>Meu Pedido</h2>
-        <OrderItems data={ itemsData }/>
+        <OrderItems data={ itemsData } total={ total }/>
       </Items>
 
       <Payment>
