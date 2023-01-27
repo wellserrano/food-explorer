@@ -29,7 +29,8 @@ export function Header({ children }) {
 
   useEffect(() => {
     const items = fetchOrderedItems();
-    setItems(items)
+    setItems(items || [])
+    
   }, [])
 
   return (
@@ -51,7 +52,7 @@ export function Header({ children }) {
         
         :
         <Button 
-          title={`Meu pedido (${items.length})`}
+          title={`Meu pedido (${items.length ?? 0})`}
           icon={ TbReceipt }
           onClick={ handleCartButton }
         />

@@ -19,7 +19,7 @@ export function Checkout() {
 
 
   useEffect(() => {
-    const itemStorage = fetchOrderedItems();
+    const itemStorage = fetchOrderedItems() || [];
 
     if (itemStorage.length) {
       async function fetchItemDetails() {
