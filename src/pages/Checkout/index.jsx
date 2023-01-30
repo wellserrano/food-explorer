@@ -4,10 +4,12 @@ import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { OrderItems } from '../../components/OrderItems'
 import { PaymentMethod } from '../../components/PaymentMethod'
+
 import { useEffect, useState } from 'react';
-import { useAuth } from '../../hooks/auth';
-import { api } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+
+import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 export function Checkout() {
   const [itemsData, setItemsData] = useState([])

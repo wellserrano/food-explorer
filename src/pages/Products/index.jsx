@@ -14,14 +14,19 @@ import { HiOutlineChevronLeft } from 'react-icons/hi'
 
 //Hooks
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 
 export function Products() {
   const [data, setData] = useState({});
 
+  const navigate = useNavigate();
   const params = useParams();
+
+  function handleBack() {
+    navigate(-1)
+  }
 
   useEffect(() => {
     async function fetchProductDetails() {
@@ -54,7 +59,7 @@ export function Products() {
       
       <Header />
 
-      <div className='back-link'>
+      <div className='back-link' onClick={ handleBack }>
         <HiOutlineChevronLeft />
         <span>voltar</span>
       </div>
