@@ -3,8 +3,28 @@ import { Container, Table } from './styles'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { SelectBox } from '../../components/SelectBox'
+import { useEffect, useState } from 'react'
+import { api } from '../../services/api'
+import { useAuth } from '../../hooks/auth'
 
 export function Orders() {
+  const [data, setData] = useState([]);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    //needs to check if user is admin or not
+
+    async function getOrders() {
+      const response = await api.get(`/orders/?id=${user.id}`)  
+      setData(response.data)
+    }
+
+    getOrders()
+    console.log(data)
+
+  }, [])
+
   return (
     <Container>
       
@@ -15,52 +35,28 @@ export function Orders() {
           <h1>Pedidos</h1>
 
           <table>
-            <tr>
+            <tbody>
+            <tr key={'trheader'}>
               <th>Status</th>
               <th>Código</th>
               <th>Detalhamento</th>
               <th>Data e Hora</th>
-            </tr>
-            {/* VISÃO ADMIN */}
-            <tr>
-              <td> <SelectBox /> </td>
-              <td>00000004</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-            <td> <SelectBox /> </td>
-              <td>00000003</td>
-              <td>1 x Salada Radish, 1 x Tors de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-              <td> <SelectBox /> </td>
-              <td>00000002</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr> 
+            </tr>            
+            {
+              data &&
+              data.map((order, i) => {
+                return (
+                  <tr key={i}>
+                    <td><SelectBox status={ order.status }/></td>
+                    <td>{ order.id }</td>
+                    <td>{ order.details }</td>
+                    <td>{ order.date }</td>
+                  </tr>
+                )
+              })
+            }
 
-            {/* VISÃO USUÁRIO */}
-            {/* <tr>
-              <td><span>&#x25CF;</span> Pendente</td>
-              <td>00000004</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-              <td><span>&#x25CF;</span> Preparando</td>
-              <td>00000003</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-              <td><span>&#x25CF;</span> Entregue</td>
-              <td>00000002</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr> */}
-
+            </tbody>
           </table>
 
         </Table>
