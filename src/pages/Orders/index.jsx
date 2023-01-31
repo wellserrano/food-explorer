@@ -31,7 +31,7 @@ export function Orders() {
             <tr>
             <td> <SelectBox /> </td>
               <td>00000003</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
+              <td>1 x Salada Radish, 1 x Tors de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
               <td>20/05 18h00</td>
             </tr>
             <tr>

@@ -1,21 +1,22 @@
 import { Container, Option, Method } from "./styles";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from '../../components/Button'
 import { TextInput } from '../../components/TextInput'
 
 import { TbReceipt } from 'react-icons/tb'
 import { FiCheckCircle } from 'react-icons/fi'
+import Receipt from '../../assets/Receipt.svg';
 import { HiOutlineClock } from 'react-icons/hi'
 import sampleQR from '../../assets/qrcode 1.png'
-import Receipt from '../../assets/Receipt.svg';
 import ForkKnife from '../../assets/forknife.svg';
 
-import * as dayjs from 'dayjs'
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
-
-export function PaymentMethod() {
+export function PaymentMethod({ orderInfo }) {
   const [pixButton, setPixButton] = useState(false)
   const [creditButton, setCreditButton] = useState(false)
   const [message, setMessage] = useState('Aguardando pagamento no caixa')
@@ -23,6 +24,10 @@ export function PaymentMethod() {
   const [cvc, setCvc] = useState('');
   const [creditNumber, setCreditNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
+
+  const { dropCart } = useAuth();
+
+  const navigate = useNavigate();
 
   function methodSelectionHandler(event) {
     const clickedButton = event.target.innerHTML;
@@ -44,8 +49,24 @@ export function PaymentMethod() {
     return ForkKnife
   }
 
-  function handleFinishPayment() {
-    return;
+  async function handleFinishPayment() {
+    if (!creditNumber || !expirationDate || !cvc) return alert('Preencha todos os campos');
+
+    const { user_id, items, total } = orderInfo;
+    
+    const response = await api.post('/checkout', { user_id, total });
+    
+    await api.post('/orders', {order_id: response.data[0], items});
+    
+    setCvc('')
+    setCreditNumber('')
+    setExpirationDate('');
+
+    dropCart();
+
+    navigate(-1)
+
+    alert('pedido registrado com sucesso');
   }
 
 
@@ -62,7 +83,6 @@ export function PaymentMethod() {
     })(e.target.value);
 
     setCreditNumber(maskCreditCardNumber)
-    console.log(creditNumber)
 
   }
 
@@ -96,8 +116,6 @@ export function PaymentMethod() {
     formattedValue = formattedValue.replace(/\D/g, "");
     
     setCvc(formattedValue)
-
-    console.log(cvc)
 
   }
   

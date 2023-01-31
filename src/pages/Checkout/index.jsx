@@ -15,7 +15,7 @@ export function Checkout() {
   const [itemsData, setItemsData] = useState([])
   const [total, setTotal] = useState(0);
   
-  const { fetchOrderedItems } = useAuth();
+  const { fetchOrderedItems, user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -54,7 +54,13 @@ export function Checkout() {
 
       <Payment>
         <h2>Pagamento</h2>
-        <PaymentMethod></PaymentMethod>
+        <PaymentMethod 
+          orderInfo={{
+            user_id: user.id,
+            items: itemsData.map(item => { const {id: product_id, quantity} = item; return {product_id, quantity}}),
+            total
+          }}
+        />
       </Payment>
 
       <Footer />
