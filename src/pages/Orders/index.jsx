@@ -21,7 +21,6 @@ export function Orders() {
     }
 
     getOrders()
-    console.log(data)
 
   }, [])
 
@@ -47,7 +46,12 @@ export function Orders() {
               data.map((order, i) => {
                 return (
                   <tr key={i}>
-                    <td><SelectBox status={ order.status }/></td>
+                    <td>
+                      <SelectBox  
+                        order={ order.id }
+                        status={ order.status }
+                      />
+                    </td>
                     <td>{ order.id }</td>
                     <td>{ order.details }</td>
                     <td>{ order.date }</td>

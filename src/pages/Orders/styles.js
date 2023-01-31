@@ -55,7 +55,7 @@ export const Table = styled.div`
 
       &:last-child {
         border-top-right-radius: 8px;
-        width: 15.1rem;
+        width: 16.1rem;
       }
     }
 
