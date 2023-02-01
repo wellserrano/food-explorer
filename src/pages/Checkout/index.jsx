@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 
-export function Checkout({ fetchOrderDetails }) {
+export function Checkout() {
   const [itemsData, setItemsData] = useState([])
   const [total, setTotal] = useState(0);
   
