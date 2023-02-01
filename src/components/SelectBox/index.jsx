@@ -15,12 +15,12 @@ const customStyles = {
   option: (provided, state) => ({
     ...provided,
     color: `${ ({ theme }) => theme.COLORS.WHITE2 }`,
-    backgroundColor:'#010A0F',
+    backgroundColor:'#010A0F',    
   }),
 
   singleValue: (provided, state) => ({
     ...provided,
-    color: `${ ({ theme }) => theme.COLORS.WHITE1 }`
+    color: `${ ({ theme }) => theme.COLORS.WHITE1 }`,
   })
 
 };
@@ -45,12 +45,12 @@ export function SelectBox({ status, order }) {
   return (
     <Container>
       <Select 
-        value={ selectedOption }
-        styles={ customStyles }
         options={ options }
+        isDisabled={ !isAdmin }
+        styles={ customStyles }
+        value={ selectedOption }
         placeholder={ selectedOption }
         onChange={ handleStatusChange }
-        isDisabled={ !isAdmin }
       />
     </Container>
   )
