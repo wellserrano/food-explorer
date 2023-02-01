@@ -77,7 +77,7 @@ export function Products() {
           <Ingredients data={ data.ingredients } />
 
           <div className="price-quantity">
-            <span>R$ { data.price } </span>
+            <span>R$ { Number(data.price).toFixed(2) } </span>
             <NumberInput product_id={ Number(params.product_id) } />
           </div>
 
