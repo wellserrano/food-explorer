@@ -66,7 +66,7 @@ export function Carousel({ title, category, searchData, ...rest }) {
                     data={{
                       title:          dish.name,
                       description:    dish.description,
-                      price:          String(dish.price),
+                      price:          String(dish.price.toFixed(2)),
                       product_id:     dish.id,
                       image:          dish.image,
                       favorite_id:    dish.favorite_id

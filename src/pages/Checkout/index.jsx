@@ -39,6 +39,7 @@ export function Checkout() {
 
       fetchItemDetails();
     } else {
+      alert('Não há itens em seu carrinho')
       navigate("/")
     }
   }, [])
