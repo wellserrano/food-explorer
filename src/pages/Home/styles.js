@@ -38,6 +38,17 @@ export const Content = styled.div`
     
     background: ${ ({ theme }) => theme.COLORS.GRADIENT_PANEL };
     border-radius: 8px;
+
+    animation: move-horizontal 1s ease-in-out forwards;
+    @keyframes move-horizontal {
+      from {
+        transform: translateX(-900px)
+      }
+
+      to {
+        transform: translateX(0) 
+      }
+    }
     
     > img {
       position: absolute;
