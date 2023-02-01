@@ -2,12 +2,11 @@ import { Container, Row, Delete, Total, Rows} from "./styles";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
-export function OrderItems({ data, total }) {
+export function OrderItems({ data, total, status }) {
   const { dropItem } = useAuth();
 
-  const dataExists = data.length > 0;
-
   function handleItemRemove(itemId) {
+    console.log(data)
     dropItem(itemId)
     window.location.reload();
   }
@@ -31,7 +30,14 @@ export function OrderItems({ data, total }) {
 
                 </div>
 
-                <Delete onClick={() => handleItemRemove(item.id) }> Excluir </Delete>
+                {
+                  status === 'Pendente' &&
+                  <Delete 
+                    onClick={() => handleItemRemove(item.id) }
+                  > 
+                    Excluir 
+                  </Delete>
+                }
               </div>
             </Row>)
             })

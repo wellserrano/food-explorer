@@ -51,8 +51,7 @@ function AuthProvider({ children }) {
 
   function dropCart() {
     localStorage.removeItem("@foodexp:cart");
-  }
-  
+  }  
 
   useEffect(() => {
     const token = localStorage.getItem('@foodexp:token')
@@ -76,7 +75,7 @@ function AuthProvider({ children }) {
       signOut,
       fetchOrderedItems,
       dropItem,
-      dropCart
+      dropCart,
     }}>
       { children }
     </AuthContext.Provider>
@@ -89,7 +88,6 @@ function useAuth() {
 
   return context;
 }
-
 
 
 export { AuthProvider, useAuth };

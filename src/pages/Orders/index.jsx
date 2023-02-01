@@ -3,14 +3,26 @@ import { Container, Table } from './styles'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { SelectBox } from '../../components/SelectBox'
-import { useEffect, useState } from 'react'
+
 import { api } from '../../services/api'
 import { useAuth } from '../../hooks/auth'
+
+
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export function Orders() {
   const [data, setData] = useState([]);
 
   const { user } = useAuth();
+  const navigate = useNavigate();
+  
+  function handleOrderDetails(e) {
+    const order_id = Number(e.target.innerHTML);
+
+
+    navigate('/orders/details', { state: { order_id: order_id } })
+  }
 
   useEffect(() => {
     //needs to check if user is admin or not
@@ -52,7 +64,7 @@ export function Orders() {
                         status={ order.status }
                       />
                     </td>
-                    <td>{ order.id }</td>
+                    <td><div className='open-order-details' onClick={ handleOrderDetails }>{ order.id }</div></td>
                     <td>{ order.details }</td>
                     <td>{ order.date }</td>
                   </tr>

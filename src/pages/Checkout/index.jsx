@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 
-export function Checkout() {
+export function Checkout({ fetchOrderDetails }) {
   const [itemsData, setItemsData] = useState([])
   const [total, setTotal] = useState(0);
   
@@ -22,6 +22,7 @@ export function Checkout() {
 
   useEffect(() => {
     const itemStorage = fetchOrderedItems() || [];
+    console.log(itemStorage)
 
     if (itemStorage.length) {
       async function fetchItemDetails() {
@@ -31,8 +32,7 @@ export function Checkout() {
 
         const totalPrice = response.data.reduce(((accumulator, currentValue) => 
         accumulator + (currentValue['price'] * currentValue['quantity'])), 0)
-
-        
+  
         setTotal(totalPrice.toFixed(2))
 
       }
@@ -49,7 +49,7 @@ export function Checkout() {
 
       <Items>
         <h2>Meu Pedido</h2>
-        <OrderItems data={ itemsData } total={ total }/>
+        <OrderItems status='Pendente' data={ itemsData } total={ total }/>
       </Items>
 
       <Payment>
@@ -58,7 +58,8 @@ export function Checkout() {
           orderInfo={{
             user_id: user.id,
             items: itemsData.map(item => { const {id: product_id, quantity} = item; return {product_id, quantity}}),
-            total
+            message: 'Aguardando pagamento no caixa',
+            total,
           }}
         />
       </Payment>

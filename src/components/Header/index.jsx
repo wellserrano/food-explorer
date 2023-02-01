@@ -13,7 +13,7 @@ import { useAuth } from '../../hooks/auth'
 import { useEffect, useState } from 'react'
 
 
-export function Header({ children }) {
+export function Header({ children, ...rest }) {
   const [items, setItems] = useState([])
   const { user, signOut, fetchOrderedItems } = useAuth();
 

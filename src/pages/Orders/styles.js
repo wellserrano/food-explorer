@@ -31,6 +31,14 @@ export const Table = styled.div`
       border: 1px solid ${ ({ theme }) => theme.COLORS.TABLE_BORDER };
     }
 
+    td .open-order-details {
+      color: ${ ({ theme }) => theme.COLORS.WHITE2};
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+
     tr th {
       font-weight: bold;
       padding-block: 2.1rem;

@@ -19,7 +19,6 @@ import { useAuth } from "../../hooks/auth";
 export function PaymentMethod({ orderInfo }) {
   const [pixButton, setPixButton] = useState(false)
   const [creditButton, setCreditButton] = useState(false)
-  const [message, setMessage] = useState('Aguardando pagamento no caixa')
 
   const [cvc, setCvc] = useState('');
   const [creditNumber, setCreditNumber] = useState('');
@@ -28,6 +27,8 @@ export function PaymentMethod({ orderInfo }) {
   const { dropCart } = useAuth();
 
   const navigate = useNavigate();
+
+  const { message } = orderInfo;
 
   function methodSelectionHandler(event) {
     const clickedButton = event.target.innerHTML;
@@ -44,10 +45,6 @@ export function PaymentMethod({ orderInfo }) {
 
     };
   };
-
-  function imageHandler() {
-    return ForkKnife
-  }
 
   async function handleFinishPayment() {
     if (!creditNumber || !expirationDate || !cvc) return alert('Preencha todos os campos');
@@ -126,13 +123,18 @@ export function PaymentMethod({ orderInfo }) {
         <Option 
           type="button"
           isActive={ pixButton }
-          onClick={ methodSelectionHandler } >
+          onClick={ methodSelectionHandler } 
+          disabled={ message === 'Pedido entregue!' ? true : false }
+
+        >
             PIX
         </Option>
         <Option 
           type="button"
-          isActive={ creditButton }
-          onClick={ methodSelectionHandler } >
+          isActive={creditButton }
+          onClick={ methodSelectionHandler } 
+          disabled={ message === 'Pedido entregue!' ? true : false }
+        >
             Crédito
         </Option>
       </div>
@@ -141,7 +143,17 @@ export function PaymentMethod({ orderInfo }) {
         !pixButton && !creditButton ?
 
         <Method className="message">
-          <HiOutlineClock />
+          {
+            message === 'Pedido entregue!' 
+            
+            ? <img src={ForkKnife} alt="" />
+
+            : message === 'Pagamento aprovado!' 
+            
+            ? <FiCheckCircle />
+
+            : <HiOutlineClock />
+          }
           <span>{ message }</span>
         </Method>
 
