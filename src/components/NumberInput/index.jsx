@@ -8,17 +8,19 @@ import { Button } from '../Button'
 
 export function NumberInput({ product_id, ...rest }) {
   const [quantity, setQuantity] = useState(0);
-
+  const [animatePlus, setAnimatePlus] = useState(false);
+  const [animateMinus, setAnimateMinus] = useState(false);
 
   function handleRemove() {
     if (quantity > 0) {
       setQuantity(prevState => prevState -1 )
-
+      setAnimateMinus(true)
     }
   }
 
   function handleAdd() {
     setQuantity(prevState => prevState +1 )
+    setAnimatePlus(true)
   }
 
   function handleCart() {
@@ -43,7 +45,7 @@ export function NumberInput({ product_id, ...rest }) {
     <Container>
 
       <ChangeButton onClick={ handleRemove }>
-        <FiMinus />
+        <FiMinus className={ animateMinus ? 'animation-click' : ''} onAnimationEnd={() => setAnimateMinus(false)} />
       </ChangeButton>
 
       <Quantity 
@@ -55,7 +57,7 @@ export function NumberInput({ product_id, ...rest }) {
       />
 
       <ChangeButton onClick={ handleAdd }>
-        <FiPlus />  
+        <FiPlus className={ animatePlus ? 'animation-click' : ''} onAnimationEnd={() => setAnimatePlus(false)} />  
       </ChangeButton>
 
       <Button 
