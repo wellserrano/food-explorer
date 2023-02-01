@@ -8,7 +8,7 @@ import { Carousel } from '../../components/Carousel'
 export function Favorites() {
   return (
     <Container>
-      <Header />
+      <Header/>
 
       <Content>
 

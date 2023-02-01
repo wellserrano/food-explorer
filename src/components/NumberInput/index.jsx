@@ -35,6 +35,7 @@ export function NumberInput({ product_id, ...rest }) {
     }
   
     localStorage.setItem("@foodexp:cart", JSON.stringify(cart));
+    setQuantity(0)
     
   };
 

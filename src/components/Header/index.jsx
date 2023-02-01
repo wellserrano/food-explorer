@@ -13,7 +13,7 @@ import { useAuth } from '../../hooks/auth'
 import { useEffect, useState } from 'react'
 
 
-export function Header({ children }) {
+export function Header({ children, ...rest }) {
   const [items, setItems] = useState([])
   const { user, signOut, fetchOrderedItems } = useAuth();
 
@@ -29,7 +29,8 @@ export function Header({ children }) {
 
   useEffect(() => {
     const items = fetchOrderedItems();
-    setItems(items)
+    setItems(items || [])
+    
   }, [])
 
   return (
@@ -51,7 +52,7 @@ export function Header({ children }) {
         
         :
         <Button 
-          title={`Meu pedido (${items.length})`}
+          title={`Meu pedido (${items.length ?? 0})`}
           icon={ TbReceipt }
           onClick={ handleCartButton }
         />

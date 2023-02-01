@@ -13,6 +13,11 @@ export const Container = styled.div`
   "header"
   "content"
   "footer";
+
+  >div.header {
+    display: flex;
+    justify-content: space-between;
+  }
   `;
 
 export const Content = styled.div`

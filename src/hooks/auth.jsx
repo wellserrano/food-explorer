@@ -41,10 +41,17 @@ function AuthProvider({ children }) {
     return arrayItems;
   }
 
-  function dropOrderedItems() {
-    localStorage.removeItem("@foodexp:cart")
+  function dropItem(id) {
+    const currentItems = JSON.parse(localStorage.getItem("@foodexp:cart"));
+    const newCart = currentItems.filter(item => item.product_id !== id);
+
+    localStorage.setItem("@foodexp:cart", JSON.stringify(newCart));
+
   }
 
+  function dropCart() {
+    localStorage.removeItem("@foodexp:cart");
+  }  
 
   useEffect(() => {
     const token = localStorage.getItem('@foodexp:token')
@@ -67,7 +74,8 @@ function AuthProvider({ children }) {
       signIn,
       signOut,
       fetchOrderedItems,
-      dropOrderedItems
+      dropItem,
+      dropCart,
     }}>
       { children }
     </AuthContext.Provider>
@@ -80,7 +88,6 @@ function useAuth() {
 
   return context;
 }
-
 
 
 export { AuthProvider, useAuth };

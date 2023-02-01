@@ -4,7 +4,38 @@ import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { SelectBox } from '../../components/SelectBox'
 
+import { api } from '../../services/api'
+import { useAuth } from '../../hooks/auth'
+
+
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 export function Orders() {
+  const [data, setData] = useState([]);
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  
+  function handleOrderDetails(e) {
+    const order_id = Number(e.target.innerHTML);
+
+
+    navigate('/orders/details', { state: { order_id: order_id } })
+  }
+
+  useEffect(() => {
+    //needs to check if user is admin or not
+
+    async function getOrders() {
+      const response = await api.get(`/orders/?id=${user.id}`)  
+      setData(response.data)
+    }
+
+    getOrders()
+
+  }, [])
+
   return (
     <Container>
       
@@ -15,52 +46,33 @@ export function Orders() {
           <h1>Pedidos</h1>
 
           <table>
-            <tr>
+            <tbody>
+            <tr key={'trheader'}>
               <th>Status</th>
               <th>Código</th>
               <th>Detalhamento</th>
               <th>Data e Hora</th>
-            </tr>
-            {/* VISÃO ADMIN */}
-            <tr>
-              <td> <SelectBox /> </td>
-              <td>00000004</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-            <td> <SelectBox /> </td>
-              <td>00000003</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-              <td> <SelectBox /> </td>
-              <td>00000002</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr> 
+            </tr>            
+            {
+              data &&
+              data.map((order, i) => {
+                return (
+                  <tr key={i}>
+                    <td>
+                      <SelectBox  
+                        order={ order.id }
+                        status={ order.status }
+                      />
+                    </td>
+                    <td><div className='open-order-details' onClick={ handleOrderDetails }>{ order.id }</div></td>
+                    <td>{ order.details }</td>
+                    <td>{ order.date }</td>
+                  </tr>
+                )
+              })
+            }
 
-            {/* VISÃO USUÁRIO */}
-            {/* <tr>
-              <td><span>&#x25CF;</span> Pendente</td>
-              <td>00000004</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-              <td><span>&#x25CF;</span> Preparando</td>
-              <td>00000003</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr>
-            <tr>
-              <td><span>&#x25CF;</span> Entregue</td>
-              <td>00000002</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 18h00</td>
-            </tr> */}
-
+            </tbody>
           </table>
 
         </Table>

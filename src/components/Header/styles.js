@@ -63,4 +63,5 @@ export const Container = styled.div`
 export const AdminButton = styled(Link)`
   display: flex;
   align-items: center;
+  margin-inline: 2.4rem;
 `

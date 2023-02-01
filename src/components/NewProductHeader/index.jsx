@@ -10,15 +10,25 @@ import { FiLogOut, FiSearch } from 'react-icons/fi'
 import { TbReceipt } from 'react-icons/tb'
 
 //hooks
+import { useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/auth'
-
+import { useNavigate } from 'react-router-dom'
 
 export function NewProductHeader() {
-  const { user, signOut } = useAuth();
+  const [items, setItems] = useState([])
 
-  function handleLogOut() {
-    signOut();
+  const { fetchOrderedItems } = useAuth();
+  const navigate = useNavigate();
+
+  function handleCartButton() {
+    navigate('/checkout')
   }
+
+  useEffect(() => {
+    const items = fetchOrderedItems();
+    setItems(items || [])
+    
+  }, [])
 
   return (
     <Container>
@@ -32,9 +42,10 @@ export function NewProductHeader() {
 
       <AdminButton>Administrador</AdminButton>
       <Button 
-        title="Meu pedido (0)" 
-        icon={ TbReceipt } 
-      />
+          title={`Meu pedido (${items.length ?? 0})`}
+          icon={ TbReceipt }
+          onClick={ handleCartButton }
+        />
 
     </Container>
   )

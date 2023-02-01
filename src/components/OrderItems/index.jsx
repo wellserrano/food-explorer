@@ -1,32 +1,54 @@
 import { Container, Row, Delete, Total, Rows} from "./styles";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
-import sampleImg from '../../assets/miniatures/dishes/bolo_de_damasco.png'
+export function OrderItems({ data, total, status }) {
+  const { dropItem } = useAuth();
 
-export function OrderItems() {
+  function handleItemRemove(itemId) {
+    console.log(data)
+    dropItem(itemId)
+    window.location.reload();
+  }
+
   return (
     <Container>
       <Rows>
-        <Row>
-          <img src={ sampleImg } alt="" />
+        {
+          data &&
+          data.map((item, i) =>{
+            return (  
+            <Row key={`${item.name}-${i}`}>
+              <img src={ `${api.defaults.baseURL}/files/${item.image}` } alt="" />
 
-          <div className="in-column">
+              <div className="in-column">
 
-            <div className="in-line">
+                <div className="in-line">
 
-              <p>1 x&nbsp;&nbsp;&nbsp;Salada Radish</p>
-              <span>R$ 25,82</span>
+                  <p>{item.quantity} x&nbsp;&nbsp;&nbsp;{item.name}</p>
+                  <span>R$ {item.price}</span>
 
-            </div>
+                </div>
 
-            <Delete> Excluir </Delete>
-          </div>
-        </Row>
+                {
+                  status === 'Pendente' &&
+                  <Delete 
+                    onClick={() => handleItemRemove(item.id) }
+                  > 
+                    Excluir 
+                  </Delete>
+                }
+              </div>
+            </Row>)
+            })
+        }
+        
         
       </Rows>
    
 
       <Total>
-        <span>Total: R$ 105,30</span>
+        <span>Total: R$ { total }</span>
       </Total>
 
     </Container>

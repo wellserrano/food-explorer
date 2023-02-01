@@ -32,7 +32,6 @@ export function Home() {
     
     setDishes(response.data)
     setIsSearching(true)
-console.log(dishes)
     
   }
 

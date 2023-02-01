@@ -34,11 +34,13 @@ export const Container = styled.div`
 
     > svg {
       font-size: 3.2rem;
+      cursor: pointer;
     };
 
     > span {
       font-family: ${ ({ theme }) => theme.FONTS.POPPINS };
       font-weight: 100;
+      cursor: pointer;
     };
   };
 `;
