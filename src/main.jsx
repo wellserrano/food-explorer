@@ -37,17 +37,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>
 );
-
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
-//   <ThemeProvider theme={ lightTheme }>
-//     <GlobalStyle />
-//       <AuthProvider>
-
-//         <Routes />
-        
-//       </AuthProvider>
-//   </ThemeProvider>
-// </React.StrictMode>
-// )
