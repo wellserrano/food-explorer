@@ -16,8 +16,9 @@ import { ThemeContext } from '../../hooks/theme'
 
 export function Header({ children, ...rest }) {
   const [items, setItems] = useState([])
+  const [animate, setAnimate] = useState(false)
 
-  const { theme, toggleSwitch } = useContext(ThemeContext)
+  const { toggleSwitch } = useContext(ThemeContext)
   const { user, signOut, fetchOrderedItems } = useAuth(); 
 
   const navigate = useNavigate();
@@ -30,8 +31,6 @@ export function Header({ children, ...rest }) {
     navigate('/checkout')
   }
 
-
-
   useEffect(() => {
     const items = fetchOrderedItems();
     setItems(items || [])
@@ -40,14 +39,16 @@ export function Header({ children, ...rest }) {
 
   return (
     <Container>
-      <Link className='homeButton' to='/'>
-        <svg width="44" height="48" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
-        </svg>
+      <Link className='homeButton' to='/' onClick={ () => setAnimate(true) }>
+        <div style={{marginRight: '2rem'}}>
+          <svg className={ animate ? 'animation-click' : ''} onAnimationEnd={() => setAnimate(false)}  width="44" height="48" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
+          </svg>
+        </div>
         <span>food.exp</span>
       </Link>
 
-      <a href="/favorites">Meus favoritos</a>
+      <Link to="/favorites">Meus favoritos</Link>
 
       { children }
 

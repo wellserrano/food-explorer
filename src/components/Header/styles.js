@@ -11,10 +11,27 @@ export const Container = styled.div`
   height: 10.4rem;
   background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
-  .homeButton{
+  .homeButton {
     display: flex;
     align-items: center;
     gap: 1rem;
+
+  }
+
+  .animation-click {
+    animation: click .5s forwards;
+    margin: 0;
+      
+      @keyframes click {
+        from {
+          transform: rotate(180deg);
+        }
+  
+        to {
+          transform: rotate(0);
+
+        }
+      }    
   }
 
   > a {
