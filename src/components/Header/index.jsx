@@ -3,19 +3,22 @@ import { Link, useNavigate } from 'react-router-dom'
 
 //Components
 import { Button } from '../Button'
+import { Switch } from '../Switch'
 
 //Icons
 import { FiLogOut } from 'react-icons/fi'
-import { TbReceipt } from 'react-icons/tb'
+import { TbReceipt, TbRuler } from 'react-icons/tb'
 
 //hooks
 import { useAuth } from '../../hooks/auth'
-import { useEffect, useState } from 'react'
-
+import { useEffect, useState, useContext } from 'react'
+import { ThemeContext } from '../../hooks/theme'
 
 export function Header({ children, ...rest }) {
   const [items, setItems] = useState([])
-  const { user, signOut, fetchOrderedItems } = useAuth();
+
+  const { theme, toggleSwitch } = useContext(ThemeContext)
+  const { user, signOut, fetchOrderedItems } = useAuth(); 
 
   const navigate = useNavigate();
 
@@ -26,6 +29,8 @@ export function Header({ children, ...rest }) {
   function handleCartButton() {
     navigate('/checkout')
   }
+
+
 
   useEffect(() => {
     const items = fetchOrderedItems();
@@ -60,6 +65,7 @@ export function Header({ children, ...rest }) {
 
       <FiLogOut onClick={ handleLogOut } />
 
+      <Switch defaultChecked onChange={ toggleSwitch }/>
 
     </Container>
   )
