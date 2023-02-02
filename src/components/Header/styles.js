@@ -19,17 +19,14 @@ export const Container = styled.div`
   }
 
   .animation-click {
-    animation: click .5s forwards;
-    margin: 0;
-      
-      @keyframes click {
+    animation: rotate .5s ease-out forwards;      
+      @keyframes rotate {
         from {
           transform: rotate(180deg);
         }
   
         to {
           transform: rotate(0);
-
         }
       }    
   }
