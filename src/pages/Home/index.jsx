@@ -6,7 +6,7 @@ import { Footer } from '../../components/Footer'
 import { Carousel } from '../../components/Carousel'
 import { SearchInput } from '../../components/SearchInput'
 
-import splashFruits from '../../assets/splashfruits.png'
+import splashFruits from '../../assets/splashFruits.png'
 
 import { FiSearch } from 'react-icons/fi'
 
