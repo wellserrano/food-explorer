@@ -1,5 +1,5 @@
 import { Container, AdminButton } from './styles'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 //Components
 import { Button } from '../Button'
@@ -14,14 +14,16 @@ import { useAuth } from '../../hooks/auth'
 import { useEffect, useState, useContext } from 'react'
 import { ThemeContext } from '../../hooks/theme'
 
-export function Header({ children, ...rest }) {
+export function Header({ children, productsDetails, ...rest }) {
   const [items, setItems] = useState([])
   const [animate, setAnimate] = useState(false)
 
   const { toggleSwitch } = useContext(ThemeContext)
   const { user, signOut, fetchOrderedItems } = useAuth(); 
+  
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleLogOut() {
     signOut();
@@ -29,6 +31,10 @@ export function Header({ children, ...rest }) {
 
   function handleCartButton() {
     navigate('/checkout')
+  }
+
+  function handleAdmin() {
+    navigate('/products/edit', {state: { productsDetails }})
   }
 
   useEffect(() => {
@@ -62,7 +68,7 @@ export function Header({ children, ...rest }) {
 
       {
         user.admin ? 
-        <AdminButton to="/newproduct">Administrador</AdminButton>
+        <AdminButton onClick={ handleAdmin }>Administrador</AdminButton>
         
         :
         <Button 
