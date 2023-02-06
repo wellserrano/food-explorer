@@ -4,7 +4,7 @@ import { Tag } from '../Tag';
 
 import { useEffect, useState } from 'react';
 
-export function TagIngredients({ sendData }) {
+export function TagIngredients({ sendData, ingredientsProp }) {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState('');
 
@@ -13,21 +13,30 @@ export function TagIngredients({ sendData }) {
 
     setIngredients( prevState => [...prevState, newIngredient]);
     setNewIngredient('');
-    
-  }
+  };
 
   function handleDeleteIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
-  }
+  };
 
-  useEffect(() => {
-    sendData(ingredients)
-  }, [ingredients])
+  useEffect(() => {    
+    return sendData(ingredients)
+  }, [ingredients]);
 
   return (
     <Container> 
       {
-        ingredients.map((ingredient, index) => (
+        ingredientsProp.length ?
+
+        ingredientsProp.map((ingredient, index) => (
+          <Tag 
+            key={ String(index) }
+            value={ ingredient }
+            onClick={() => handleDeleteIngredient(ingredient) }
+          />
+        ))
+        
+        : ingredients.map((ingredient, index) => (
           <Tag 
             key={ String(index) }
             value={ ingredient }

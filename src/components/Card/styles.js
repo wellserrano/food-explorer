@@ -27,6 +27,20 @@ export const Container = styled.div`
     justify-content: flex-end;
     margin-right: 3.2rem;
 
+    .animation-pop-in {
+      animation: pop-in-heart .5s ease-out forwards;
+      opacity: 0;
+      transform: scale(0);
+
+      @keyframes pop-in-heart {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+  
+
     svg {
       cursor: pointer;
     }

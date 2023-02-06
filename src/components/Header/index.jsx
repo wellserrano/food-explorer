@@ -1,23 +1,29 @@
 import { Container, AdminButton } from './styles'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 //Components
 import { Button } from '../Button'
+import { Switch } from '../Switch'
 
 //Icons
 import { FiLogOut } from 'react-icons/fi'
-import { TbReceipt } from 'react-icons/tb'
+import { TbReceipt, TbRuler } from 'react-icons/tb'
 
 //hooks
 import { useAuth } from '../../hooks/auth'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { ThemeContext } from '../../hooks/theme'
 
-
-export function Header({ children, ...rest }) {
+export function Header({ children, productsDetails, ...rest }) {
   const [items, setItems] = useState([])
-  const { user, signOut, fetchOrderedItems } = useAuth();
+  const [animate, setAnimate] = useState(false)
+
+  const { toggleSwitch } = useContext(ThemeContext)
+  const { user, signOut, fetchOrderedItems } = useAuth(); 
+  
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleLogOut() {
     signOut();
@@ -25,6 +31,10 @@ export function Header({ children, ...rest }) {
 
   function handleCartButton() {
     navigate('/checkout')
+  }
+
+  function handleAdmin() {
+    navigate('/products/edit', {state: { productsDetails }})
   }
 
   useEffect(() => {
@@ -35,20 +45,30 @@ export function Header({ children, ...rest }) {
 
   return (
     <Container>
-      <Link className='homeButton' to='/'>
-        <svg width="44" height="48" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
-        </svg>
+      <Link className='homeButton' to='/' onClick={ () => {console.log(animate); setAnimate(true)} }>
+        <div style={{marginRight: '2rem'}}  >
+          <svg 
+            className={ animate ? 'animation-click' : ''}  
+            onAnimationEnd={() => setAnimate(false)} 
+            width="44" 
+            height="48" 
+            viewBox="0 0 44 48" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
+          </svg>
+        </div>
         <span>food.exp</span>
       </Link>
 
-      <a href="/favorites">Meus favoritos</a>
+      <Link to="/favorites">Meus favoritos</Link>
 
       { children }
 
       {
         user.admin ? 
-        <AdminButton to="/newproduct">Administrador</AdminButton>
+        <AdminButton onClick={ handleAdmin }>Administrador</AdminButton>
         
         :
         <Button 
@@ -60,6 +80,7 @@ export function Header({ children, ...rest }) {
 
       <FiLogOut onClick={ handleLogOut } />
 
+      <Switch defaultChecked onChange={ toggleSwitch }/>
 
     </Container>
   )

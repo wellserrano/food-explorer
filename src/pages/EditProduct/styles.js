@@ -75,6 +75,8 @@ export const Form = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-bottom: 1rem;
   }
 
   .tags {

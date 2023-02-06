@@ -8,13 +8,29 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  position: relative;
+
   height: 10.4rem;
   background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
-  .homeButton{
+  .homeButton {
     display: flex;
     align-items: center;
     gap: 1rem;
+
+  }
+
+  .animation-click {
+    animation: rotate .5s ease-out forwards;      
+      @keyframes rotate {
+        from {
+          transform: rotate(180deg);
+        }
+  
+        to {
+          transform: rotate(0);
+        }
+      }    
   }
 
   > a {
@@ -60,8 +76,13 @@ export const Container = styled.div`
 
 `;
 
-export const AdminButton = styled(Link)`
+export const AdminButton = styled.div`
   display: flex;
   align-items: center;
   margin-inline: 2.4rem;
+  color: ${ ({ theme }) => theme.COLORS.WHITE2 };
+  font-size: 1.6rem;
+  font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+  margin-right: 3.2rem;
+  cursor: pointer;
 `

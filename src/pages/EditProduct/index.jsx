@@ -10,6 +10,7 @@ import { api } from '../../services/api'
 
 //Hooks
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom'
 
 //Components
 import { Footer } from '../../components/Footer'
@@ -23,14 +24,15 @@ import { NewProductHeader } from '../../components/NewProductHeader';
 import { FiUpload, FiCheckCircle } from 'react-icons/fi';
 import { HiOutlineChevronLeft } from 'react-icons/hi'
 
-export function NewProduct() {
+export function EditProduct() {
   const [name, setName] = useState('')
   const [value, setValue] = useState(0)
   const [imageFile, setImageFile] = useState(null)
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('');
   
-
+  const location = useLocation();
+  const { productsDetails } = location.state;
 
   async function handleImageUpload(event) {
     event.preventDefault()
@@ -44,46 +46,69 @@ export function NewProduct() {
   }
 
   function handlePrice(data) {
-
     const priceWithDotSeparator = data.replace(",", ".")
     const priceAsFloatNumber = parseFloat(priceWithDotSeparator);
-
     setValue(priceAsFloatNumber);
   }
 
-  async function handleAddNewProduct() {
+  async function handleEditProduct() {
+    let dataImageName;
 
-    const fileUploadForm = new FormData();
-    fileUploadForm.append("image", imageFile)
-      
-    //DiskStorage (saving image)
-    const response_image = await api.post('/products/image', fileUploadForm);
-    const dataImageName = response_image.data;
+    if (productsDetails.image !== imageFile) {
+      const fileUploadForm = new FormData();
+      fileUploadForm.append("image", imageFile)
+        
+      //DiskStorage (saving image)
+      const response_image = await api.post('/products/image', fileUploadForm);
+      dataImageName = response_image.data;
+    }
 
     const productData = {
+      id: productsDetails.product_id,
       name, 
       description,
+      ingredients,
       price: value, 
-      image: dataImageName
+      image: dataImageName??null
     };
 
-    //Inserting product on DB
-    const response_product = await api.post('/products', productData);
+    if (productsDetails) {
+      const confirmed = confirm(`Você está atualizando o produto ${ name }. Deseja continuar?`)
+      if (!confirmed) return;
+      
+      await api.put('/products', productData)
+      alert('Produto atualizado com sucesso')
 
-    const product_id = response_product.data;
+    } else {
 
-    //Inserting ingredients on DB
-    await api.post('/ingredients', { product_id, ingredients });
+      //Inserting product on DB
+      const response_product = await api.post('/products', productData);
 
-    alert('Produto criado com sucesso');
-    
-    refreshPage();
-    
+      const product_id = response_product.data;
+
+      //Inserting ingredients on DB
+      await api.post('/ingredients', { product_id, ingredients });
+
+      alert('Produto criado com sucesso');
+      refreshPage();
+    }    
   }
 
   function refreshPage() {
     window.location.reload(false);
   }
+
+
+  useEffect(() => {
+    console.log('det', productsDetails)
+    if (productsDetails) {
+      setName(productsDetails.name)
+      setValue(productsDetails.price)
+      setImageFile(productsDetails.image)
+      setDescription(productsDetails.description)
+      handleIngredients(productsDetails.ingredients);
+    }
+  }, [])
 
   return (
     <Container>
@@ -94,10 +119,10 @@ export function NewProduct() {
             <span>voltar</span>
           </div>
 
-          <p className='title'>Editar prato</p>
+          <p className='title'>Editar produto</p>
 
           <ImageUpload>
-            <span>Imagem do prato</span>
+            <span>Imagem do produto</span>
 
             <label htmlFor="image">
               <input 
@@ -125,7 +150,8 @@ export function NewProduct() {
 
           <div className="tags">
             <span>Ingredientes</span>
-            <TagIngredients 
+            <TagIngredients
+              ingredientsProp={ ingredients }
               sendData={ handleIngredients }
             />
           </div>
@@ -134,6 +160,7 @@ export function NewProduct() {
             <MoneyInput 
               prefix='R$'
               caption='Preço'
+              value={ value }
               sendData={ handlePrice }
             />
           </div>
@@ -150,9 +177,9 @@ export function NewProduct() {
           <div className="add-button">
             <AddButton
               type='button'
-              onClick={ handleAddNewProduct }
+              onClick={ handleEditProduct }
             >
-              Adicionar pedido
+              Editar produto
             </AddButton>
           </div>
 

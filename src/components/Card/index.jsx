@@ -40,7 +40,9 @@ export function Card({ data, ...rest }) {
       <div className="favorite">
         <div onClick={ handleFavorite }>
           {
-          isFavorite ? <FaHeart /> : <FiHeart /> 
+          isFavorite 
+          ? <FaHeart className="animation-pop-in"/> 
+          : <FiHeart className="animation-pop-in"/> 
           }
         </div>
       </div>
