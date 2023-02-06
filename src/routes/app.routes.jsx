@@ -5,7 +5,7 @@ import { Home } from '../pages/Home'
 import { Products } from '../pages/Products'
 import { Checkout } from '../pages/Checkout'
 import { Favorites } from '../pages/Favorites'
-import { NewProduct } from '../pages/NewProduct';
+import { EditProduct } from '../pages/EditProduct';
 
 import { Orders } from '../pages/Orders'
 import { OrderDetails } from '../pages/OrderDetails'
@@ -16,7 +16,7 @@ export function AppRoutes() {
       <Route path="/" element={ <Home /> } />
       <Route path="/checkout" element={ <Checkout /> } />
       <Route path="/favorites" element={ <Favorites /> } />
-      <Route path="/newproduct" element={ <NewProduct />} />
+      <Route path="/products/edit" element={ <EditProduct />} />
       <Route path="/products/:product_id" element={ <Products />} />
 
       <Route path="/orders" element={ <Orders />} />
