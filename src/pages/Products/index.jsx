@@ -43,10 +43,7 @@ export function Products() {
         description,
         ingredients,
         image: imageDishURL
-      })
-
-
-      
+      })      
     }
 
     fetchProductDetails();
@@ -57,7 +54,7 @@ export function Products() {
   return (
     <Container>
       
-      <Header />
+      <Header productsDetails={{...data, product_id: Number(params.product_id)}}/>
 
       <div className='back-link' onClick={ handleBack }>
         <HiOutlineChevronLeft />
