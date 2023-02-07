@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   grid-area: header;
@@ -17,7 +16,6 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-
   }
 
   .animation-click {
@@ -73,6 +71,23 @@ export const Container = styled.div`
     }
   }
 
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 48rem;
+    height: 24rem;
+    padding: 1.4rem;
+
+    gap: 1.2rem;
+
+    a span {
+      display: none;
+    }
+  
+    .children-wrapper {
+      width: 48rem;
+      padding-inline: 2rem;
+    }
+  }
 
 `;
 

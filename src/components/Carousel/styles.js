@@ -19,6 +19,10 @@ export const Container = styled.div`
 
   }
 
+  @media (max-width: 480px) {
+    margin-top: 15rem;
+  }
+
 `;
 
 export const Dishes = styled.div`
@@ -26,12 +30,11 @@ export const Dishes = styled.div`
   justify-content: left;
   gap: 2.7rem;
   
-  width: 100%;
+  width: 100vw;
   align-items: center;
   
   overflow-x: hidden;
   scroll-behavior: smooth;
-
   
 `;
 

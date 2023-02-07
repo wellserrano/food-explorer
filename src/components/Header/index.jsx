@@ -45,7 +45,7 @@ export function Header({ children, productsDetails, ...rest }) {
 
   return (
     <Container>
-      <Link className='homeButton' to='/' onClick={ () => {console.log(animate); setAnimate(true)} }>
+      <Link className='homeButton' to='/' onClick={ () => {setAnimate(true)} }>
         <div style={{marginRight: '2rem'}}  >
           <svg 
             className={ animate ? 'animation-click' : ''}  
@@ -64,7 +64,9 @@ export function Header({ children, productsDetails, ...rest }) {
 
       <Link to="/favorites">Meus favoritos</Link>
 
-      { children }
+      <div className="children-wrapper">
+        { children }
+      </div>
 
       {
         user.admin ? 

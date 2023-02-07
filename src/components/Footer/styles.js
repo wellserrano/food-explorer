@@ -37,5 +37,18 @@ export const Container = styled.div`
     font-weight: 200;
   }
 
+  @media (max-width: 480px) {
+
+    padding: 5rem 2rem;
+    width: 48rem;
+
+    .logo {
+      flex-direction: column;
+    }
+
+    > span {
+      font-size: 1.4rem;
+    }
+  }
 
   `;

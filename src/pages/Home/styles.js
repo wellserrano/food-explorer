@@ -13,6 +13,11 @@ export const Container = styled.div`
   "header"
   "content"
   "footer";
+
+  @media (max-width: 480px) {
+    width: 48rem;
+  }
+
   `;
 
 export const Content = styled.div`
@@ -72,7 +77,17 @@ export const Content = styled.div`
       }
     }
 
+  }  
+
+  @media (max-width: 480px) {
+    
+    margin: 0;
+    width: 48rem;
+
+    .hidden-mobile {
+      display: none;
+    };
+
   }
-  
 
 `;
