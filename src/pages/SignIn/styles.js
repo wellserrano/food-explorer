@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`  
   width: 100%;
@@ -11,9 +11,9 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    font-family: ${({ theme }) => theme.FONTS.ROBOTO };
+    font-family: ${({ theme }) => theme.FONTS.ROBOTO};
     font-weight: bold;
-    color: ${({ theme }) => theme.COLORS.WHITE };
+    color: ${({ theme }) => theme.COLORS.WHITE};
   
     margin: 34rem 30.6rem 43.5rem 22.2rem;
 
@@ -23,21 +23,14 @@ export const Container = styled.div`
   }
 
   @media (max-width: 768px) {
-    display: block;
-    margin: 0 auto;
+    flex-direction: column;
 
     > h1 {
-      margin: 2.4rem auto;
-    }
-
-    > form {
-      height: 75vh;
-
-      padding: 1rem;
+      margin: 15.8rem auto 0;
     }
   }
 
-`;
+`
 
 export const Form = styled.form`
   display: flex;
@@ -56,30 +49,28 @@ export const Form = styled.form`
   border-radius: 16px;
 
   > h2 {
-    color: ${({ theme }) => theme.COLORS.WHITE };
+    color: ${({ theme }) => theme.COLORS.WHITE};
     margin-bottom: 3.2rem;
     font-size: 3.2rem;
   }
 
   > a {
-    color: ${({ theme }) => theme.COLORS.WHITE };
+    color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 1.4rem;
 
     margin-top: 3.2rem;
   }
 
   @media (max-width: 768px) {
-    margin: 0 auto;
-    font-size: 1.4rem;
+    margin: 7.3rem auto 0;
+    background-color: transparent;
+
+    width: 40.4rem;
+    height: 31rem;
 
     > h2 {
-      margin-bottom: 1.6rem;
+      display: none;
     }
-
-    > input {
-      margin-bottom: 2.1rem;
-    }
-    
   }
 
 `
