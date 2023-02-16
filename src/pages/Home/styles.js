@@ -1,11 +1,10 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND };
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
 
   display: grid;
   grid-template-rows: 10.4rem auto 7.7rem;
@@ -13,19 +12,15 @@ export const Container = styled.div`
   "header"
   "content"
   "footer";
-
-  @media (max-width: 480px) {
-    width: 48rem;
-  }
-
-  `;
+  
+  `
 
 export const Content = styled.div`
   grid-area: content;
 
-  margin: ${ ({ isSearching }) => isSearching.length === 0 ? `14.8rem auto 9.8rem` : `1.8rem auto 9.8rem`};
+  margin: ${({ isSearching }) => isSearching.length === 0 ? '14.8rem auto 9.8rem' : '1.8rem auto 9.8rem'};
 
-  color: ${ ({ theme }) => theme.COLORS.WHITE2 };
+  color: ${({ theme }) => theme.COLORS.WHITE2};
 
   padding: 2.5rem 1.4rem;
 
@@ -41,7 +36,7 @@ export const Content = styled.div`
     width: 100%;
     height: 26rem;
     
-    background: ${ ({ theme }) => theme.COLORS.GRADIENT_PANEL };
+    background: ${({ theme }) => theme.COLORS.GRADIENT_PANEL};
     border-radius: 8px;
 
     animation: move-horizontal 1s ease-in-out forwards;
@@ -79,15 +74,19 @@ export const Content = styled.div`
 
   }  
 
-  @media (max-width: 480px) {
-    
-    margin: 0;
-    width: 48rem;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    padding: 2.5rem 0;
 
-    .hidden-mobile {
+    .fruits-panel {
       display: none;
-    };
+    }
 
+    .carousel {
+      margin-top: 4.8rem;
+      width: 100%;
+      padding: 0;
+    }
   }
 
-`;
+`
