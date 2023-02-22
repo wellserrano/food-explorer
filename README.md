@@ -33,7 +33,7 @@ $ npm seed
 # Run the application in development mode
 $ npm run dev
 
-# Login do admin
+# Admin login
 $ email: admin
 $ password: admin123
 ```
