@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   grid-area: header;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   justify-content: center;
 
   height: 10.4rem;
-  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT};
 
   .logo-container {
     display: flex;
@@ -23,9 +23,9 @@ export const Container = styled.div`
     }
   
     span {
-      color: ${ ({ theme }) => theme.COLORS.WHITE };
+      color: ${({ theme }) => theme.COLORS.WHITE};
       font-size: 2.5rem;
-      font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+      font-family: ${({ theme }) => theme.FONTS.ROBOTO};
   
       margin-right: 3.7rem;
       cursor: default;
@@ -33,9 +33,9 @@ export const Container = styled.div`
   }
 
   > a {
-    color: ${ ({ theme }) => theme.COLORS.WHITE2 };
+    color: ${({ theme }) => theme.COLORS.WHITE2};
     font-size: 1.6rem;
-    font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+    font-family: ${({ theme }) => theme.FONTS.ROBOTO};
 
     margin-right: 3.2rem;
 
@@ -55,7 +55,7 @@ export const Container = styled.div`
   }
 
   > svg {
-    color: ${ ({ theme }) => theme.COLORS.WHITE };
+    color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 2.2rem;
 
     &:hover {
@@ -63,8 +63,13 @@ export const Container = styled.div`
     }
   }
 
+  @media (max-width: 768px) {
+    width: 100vw;
+    padding-left: 2rem;
+  }
+  
 
-`;
+`
 
 export const AdminButton = styled(Link)`
   display: flex;

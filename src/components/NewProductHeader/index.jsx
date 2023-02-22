@@ -1,33 +1,31 @@
 import { Container, AdminButton, Blank } from './styles'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-//Components
+// Components
 import { Button } from '../Button'
 import { SearchInput } from '../SearchInput'
 
-//Icons
+// Icons
 import { FiLogOut, FiSearch } from 'react-icons/fi'
 import { TbReceipt } from 'react-icons/tb'
 
-//hooks
-import { useEffect, useState } from 'react'
+// hooks
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/auth'
-import { useNavigate } from 'react-router-dom'
 
-export function NewProductHeader() {
+export function NewProductHeader () {
   const [items, setItems] = useState([])
 
-  const { fetchOrderedItems } = useAuth();
-  const navigate = useNavigate();
+  const { fetchOrderedItems } = useAuth()
+  const navigate = useNavigate()
 
-  function handleCartButton() {
+  function handleCartButton () {
     navigate('/checkout')
   }
 
   useEffect(() => {
-    const items = fetchOrderedItems();
+    const items = fetchOrderedItems()
     setItems(items || [])
-    
   }, [])
 
   return (
@@ -41,7 +39,7 @@ export function NewProductHeader() {
       </div>
 
       <AdminButton>Administrador</AdminButton>
-      <Button 
+      <Button
           title={`Meu pedido (${items.length ?? 0})`}
           icon={ TbReceipt }
           onClick={ handleCartButton }

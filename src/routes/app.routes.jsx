@@ -1,16 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
 
 import { Home } from '../pages/Home'
 
 import { Products } from '../pages/Products'
 import { Checkout } from '../pages/Checkout'
 import { Favorites } from '../pages/Favorites'
-import { EditProduct } from '../pages/EditProduct';
+import { EditProduct } from '../pages/EditProduct'
 
 import { Orders } from '../pages/Orders'
 import { OrderDetails } from '../pages/OrderDetails'
 
-export function AppRoutes() {
+export function AppRoutes () {
   return (
     <Routes>
       <Route path="/" element={ <Home /> } />
