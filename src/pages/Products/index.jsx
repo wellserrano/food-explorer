@@ -9,7 +9,7 @@ import { Ingredients } from '../../components/Ingredients'
 import { NumberInput } from '../../components/NumberInput'
 
 // Icons
-import { TbReceipt } from 'react-icons/tb'
+// import { TbReceipt } from 'react-icons/tb'
 import { HiOutlineChevronLeft } from 'react-icons/hi'
 
 // Hooks
