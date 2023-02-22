@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   grid-area: header;
@@ -10,14 +9,15 @@ export const Container = styled.div`
 
   position: relative;
 
+  width: 100%;
   height: 10.4rem;
-  background-color: ${ ({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT };
 
-  .homeButton {
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_HEADFOOT};
+
+  .home-button {
     display: flex;
     align-items: center;
     gap: 1rem;
-
   }
 
   .animation-click {
@@ -34,9 +34,9 @@ export const Container = styled.div`
   }
 
   > a {
-    color: ${ ({ theme }) => theme.COLORS.WHITE2 };
+    color: ${({ theme }) => theme.COLORS.WHITE2};
     font-size: 1.6rem;
-    font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+    font-family: ${({ theme }) => theme.FONTS.ROBOTO};
 
     margin-right: 3.2rem;
 
@@ -45,9 +45,9 @@ export const Container = styled.div`
     }
   
     > span {
-      color: ${ ({ theme }) => theme.COLORS.WHITE };
+      color: ${({ theme }) => theme.COLORS.WHITE};
       font-size: 2.5rem;
-      font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+      font-family: ${({ theme }) => theme.FONTS.ROBOTO};
   
       margin-right: 3.7rem;
       cursor: pointer;
@@ -65,7 +65,7 @@ export const Container = styled.div`
   }
 
   > svg {
-    color: ${ ({ theme }) => theme.COLORS.WHITE };
+    color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 2.2rem;
 
     &:hover {
@@ -73,16 +73,25 @@ export const Container = styled.div`
     }
   }
 
+  @media (max-width: 768px) {
 
-`;
+    a, .children-wrapper, button {
+      display: none;
+    }
+  }
+
+`
 
 export const AdminButton = styled.div`
   display: flex;
   align-items: center;
-  margin-inline: 2.4rem;
-  color: ${ ({ theme }) => theme.COLORS.WHITE2 };
-  font-size: 1.6rem;
-  font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
   margin-right: 3.2rem;
+  margin-inline: 2.4rem;
+
+  color: ${({ theme }) => theme.COLORS.WHITE2};
+
+  font-size: 1.6rem;
+  font-family: ${({ theme }) => theme.FONTS.ROBOTO};
+
   cursor: pointer;
 `

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -11,16 +11,15 @@ export const Container = styled.div`
     "content"
     "footer";
 
-  color: ${ ({ theme }) => theme.COLORS.WHITE };
+  color: ${({ theme }) => theme.COLORS.WHITE};
 
   span {
     font-size: 1.6rem;
-    font-family: ${ ({ theme }) => theme.FONTS.ROBOTO };
+    font-family: ${({ theme }) => theme.FONTS.ROBOTO};
 
-    color: ${ ({ theme }) => theme.COLORS.LIGHTGRAY };
+    color: ${({ theme }) => theme.COLORS.LIGHTGRAY};
   }
-`;
-
+`
 
 export const Form = styled.form`
   grid-area: content;
@@ -60,7 +59,7 @@ export const Form = styled.form`
     }
 
     > span {
-      font-family: ${ ({ theme }) => theme.FONTS.POPPINS };
+      font-family: ${({ theme }) => theme.FONTS.POPPINS};
     }
   }
 
@@ -117,7 +116,52 @@ export const Form = styled.form`
     justify-content: flex-end;
 
   }
-`;
+
+  @media (max-width: 768px) {
+    grid-template-areas: 
+    "BackLink"
+    "Title"
+    "ImageButton"
+    "NameInput"
+    "Tags"
+    "Price"
+    "Description"
+    "AddButton";
+
+    grid-template-columns: 1fr;
+
+    margin: 1rem 3.2rem 5.3rem;
+
+    .name-input {
+      max-width: 55rem;
+      margin: 0;
+    }
+
+    .tags {
+      max-width: 55rem;
+      margin: 0;
+    }
+
+    .price {
+      max-width: 55rem;
+      justify-content: flex-start;
+    }
+
+    .description {
+      max-width: 55rem;
+    }
+
+    .add-button {
+      margin-top: 1.5rem;   
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+    }
+
+  }
+`
 
 export const AddButton = styled.button`
   display: flex;
@@ -131,7 +175,7 @@ export const AddButton = styled.button`
   border-radius: 5px;
   
   background-color: rgba(255, 255, 255, 0.1);
-  color: ${ ({ theme }) => theme.COLORS.WHITE };
+  color: ${({ theme }) => theme.COLORS.WHITE};
 
 
 `
@@ -174,9 +218,9 @@ export const ImageUpload = styled.div`
       right: 0; 
 
       background-color: transparent;
-      color: ${ ({ theme }) => theme.COLORS.WHITE };
+      color: ${({ theme }) => theme.COLORS.WHITE};
       
-      font-family: ${ ({ theme }) => theme.FONTS.POPPINS };
+      font-family: ${({ theme }) => theme.FONTS.POPPINS};
       font-size: 1.4rem;
   
       > svg {
@@ -185,4 +229,4 @@ export const ImageUpload = styled.div`
     };
   }
 
-`;
+`

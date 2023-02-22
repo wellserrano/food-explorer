@@ -6,7 +6,6 @@ export default createGlobalStyle`
     padding: 0;
 
     box-sizing: border-box;
-    
   };
 
   :root {
@@ -40,5 +39,8 @@ export default createGlobalStyle`
     filter: brightness(0.9);
   };
 
+  @media (max-width: 768px) {
+    width: 480px;
+  }
 
 `;

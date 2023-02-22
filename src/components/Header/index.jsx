@@ -1,59 +1,56 @@
 import { Container, AdminButton } from './styles'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-//Components
+// Components
 import { Button } from '../Button'
 import { Switch } from '../Switch'
 
-//Icons
+// Icons
 import { FiLogOut } from 'react-icons/fi'
 import { TbReceipt, TbRuler } from 'react-icons/tb'
 
-//hooks
+// hooks
 import { useAuth } from '../../hooks/auth'
-import { useEffect, useState, useContext } from 'react'
 import { ThemeContext } from '../../hooks/theme'
+import React, { useEffect, useState, useContext } from 'react'
 
-export function Header({ children, productsDetails, ...rest }) {
+export function Header ({ children, productsDetails, ...rest }) {
   const [items, setItems] = useState([])
   const [animate, setAnimate] = useState(false)
 
   const { toggleSwitch } = useContext(ThemeContext)
-  const { user, signOut, fetchOrderedItems } = useAuth(); 
-  
+  const { user, signOut, fetchOrderedItems } = useAuth()
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate()
 
-  function handleLogOut() {
-    signOut();
+  function handleLogOut () {
+    signOut()
   }
 
-  function handleCartButton() {
+  function handleCartButton () {
     navigate('/checkout')
   }
 
-  function handleAdmin() {
-    navigate('/products/edit', {state: { productsDetails }})
+  function handleAdmin () {
+    navigate('/products/edit', { state: { productsDetails } })
   }
 
   useEffect(() => {
-    const items = fetchOrderedItems();
+    const items = fetchOrderedItems()
     setItems(items || [])
-    
   }, [])
 
   return (
     <Container>
-      <Link className='homeButton' to='/' onClick={ () => {console.log(animate); setAnimate(true)} }>
-        <div style={{marginRight: '2rem'}}  >
-          <svg 
-            className={ animate ? 'animation-click' : ''}  
-            onAnimationEnd={() => setAnimate(false)} 
-            width="44" 
-            height="48" 
-            viewBox="0 0 44 48" 
-            fill="none" 
+      <Link className='home-button' to='/' onClick={ () => { setAnimate(true) } }>
+        <div style={{ marginRight: '2rem' }} >
+          <svg
+            className={ animate ? 'animation-click' : ''}
+            onAnimationEnd={() => setAnimate(false)}
+            width="44"
+            height="48"
+            viewBox="0 0 44 48"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M22.0318 0.216492L43.4349 12.0918V35.8425L22.0318 47.7179L0.628698 35.8425V12.0918L22.0318 0.216492Z" fill="#065E7C"/>
@@ -62,16 +59,17 @@ export function Header({ children, productsDetails, ...rest }) {
         <span>food.exp</span>
       </Link>
 
-      <Link to="/favorites">Meus favoritos</Link>
+      <Link className='favorites' to="/favorites">Meus favoritos</Link>
 
-      { children }
+      <div className="children-wrapper">
+        { children }
+      </div>
 
       {
-        user.admin ? 
-        <AdminButton onClick={ handleAdmin }>Administrador</AdminButton>
-        
-        :
-        <Button 
+        user.admin
+          ? <AdminButton onClick={ handleAdmin }>Administrador</AdminButton>
+
+          : <Button
           title={`Meu pedido (${items.length ?? 0})`}
           icon={ TbReceipt }
           onClick={ handleCartButton }

@@ -1,6 +1,6 @@
 import { Container, Content } from './styles'
 
-//Components	
+// Components
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { Carousel } from '../../components/Carousel'
@@ -10,29 +10,27 @@ import splashFruits from '../../assets/splashFruits.png'
 
 import { FiSearch } from 'react-icons/fi'
 
-
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 
-export function Home() {
-  const [search, setSearch] = useState('');
-  const [dishes, setDishes] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+export function Home () {
+  const [search, setSearch] = useState('')
+  const [dishes, setDishes] = useState([])
+  const [isSearching, setIsSearching] = useState(false)
 
   const carousels = [
-    {title: 'Pratos Principais', category: 'principal'}, 
-    {title: 'Sobremesas', category: 'sobremesa'}, 
-    {title: 'Bebidas', category: 'bebida'}, 
+    { title: 'Pratos Principais', category: 'principal' },
+    { title: 'Sobremesas', category: 'sobremesa' },
+    { title: 'Bebidas', category: 'bebida' }
   ]
 
-  async function handleSearch() {
-    if (search.length === 0) return ;
+  async function handleSearch () {
+    if (search.length === 0) return
 
-    const response = await api.get(`/dishes/search?like=${ search }`)
-    
+    const response = await api.get(`/dishes/search?like=${search}`)
+
     setDishes(response.data)
     setIsSearching(true)
-    
   }
 
   useEffect(() => {
@@ -42,63 +40,56 @@ export function Home() {
     }
   }, [search])
 
-
   return (
     <Container>
-      <Header>
-        <SearchInput 
-          className="search-input" 
-          icon={ FiSearch } 
+      <Header className='header'>
+        <SearchInput
+          className="search-input"
+          icon={ FiSearch }
           handle={ handleSearch }
           onChange={e => setSearch(e.target.value) }
           onKeyPress={e => e.key === 'Enter' ? handleSearch() : false }
         />
       </Header>
 
-      
       <Content isSearching={search}>
 
         {
-          search.length > 0 && !isSearching ?
-          <h1>Pressione enter para confirmar a pesquisa...</h1>
+          search.length > 0 && !isSearching
+            ? <h1>Pressione enter para confirmar a pesquisa...</h1>
 
-          :
-          isSearching ?
-          <Carousel
+            : isSearching
+              ? <Carousel
             key={'search-results'}
             title={`${dishes.length} Resultado(s)`}
             category={'search'}
             searchData={ dishes }
           />
 
-          :  
-          
-            <>
-            <div className="fruits-panel">
-              <img src={ splashFruits } alt="fruits in the air" />
-              <div className="text-wrapper">
-                <h1>Sabores inigualáveis</h1>
-                <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
+              : <>
+              <div className="fruits-panel">
+                <img src={ splashFruits } alt="fruits in the air" />
+                <div className="text-wrapper">
+                  <h1>Sabores inigualáveis</h1>
+                  <p>Sinta o cuidado do preparo com ingredientes selecionados</p>
+                </div>
               </div>
-            </div>
-            {
-              carousels.map( (carousel, i) => (
-                <Carousel
-                  key={`${carousel.category}-${i}`}
-                  title={carousel.title}
-                  category={carousel.category}
-                />
+              {
+                carousels.map((carousel, i) => (
+                  <Carousel
+                    key={`${carousel.category}-${i}`}
+                    className='carousel'
+                    title={carousel.title}
+                    category={carousel.category}
+                  />
                 ))
-            }
+              }
             </>
-        }        
-      
+        }
+
       </Content>
 
       <Footer />
-
-      
     </Container>
   )
 }
-

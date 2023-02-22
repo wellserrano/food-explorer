@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   font-size: 3.2rem;
@@ -19,20 +19,22 @@ export const Container = styled.div`
 
   }
 
-`;
+  @media (max-width: 768px) {
+    
+  }
+
+
+`
 
 export const Dishes = styled.div`
   display: flex;
   justify-content: left;
   gap: 2.7rem;
   
-  width: 100%;
+  width: 100vw;
   align-items: center;
   
   overflow-x: hidden;
   scroll-behavior: smooth;
-
   
-`;
-
-
+`
