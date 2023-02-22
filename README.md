@@ -1,6 +1,4 @@
 
-**
-
 ## 💻 About
 
 This application is a test for a restaurant web page where you can register new products and place orders online, making the ordering process more convenient for the customer.
