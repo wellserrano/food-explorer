@@ -11,7 +11,7 @@ import { api } from '../../services/api'
 
 // Hooks
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 // Components
 import { Footer } from '../../components/Footer'
@@ -112,8 +112,10 @@ export function EditProduct () {
       <NewProductHeader />
         <Form>
           <div className='back-link'>
-            <HiOutlineChevronLeft />
-            <span>voltar</span>
+            <Link to={-1}>
+              <HiOutlineChevronLeft />
+              <span>voltar</span>
+            </Link>
           </div>
 
           <p className='title'>Editar produto</p>

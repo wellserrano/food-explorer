@@ -54,12 +54,20 @@ export const Form = styled.form`
 
     font-size: 2.4rem;
 
-    > svg {
-      font-size: 2.2rem;
-    }
+    > a {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      > svg {
+        font-size: 2.2rem;
+        color: #ACACB3;
+      }
 
-    > span {
-      font-family: ${({ theme }) => theme.FONTS.POPPINS};
+      > span {
+        font-family: ${({ theme }) => theme.FONTS.POPPINS};
+      }
     }
   }
 
