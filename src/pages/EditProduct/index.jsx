@@ -55,7 +55,7 @@ export function EditProduct () {
   async function handleEditProduct () {
     let dataImageName
 
-    if (productsDetails.image !== imageFile) {
+    if (productsDetails?.image !== imageFile) {
       const fileUploadForm = new FormData()
       fileUploadForm.append('image', imageFile)
 
@@ -65,7 +65,7 @@ export function EditProduct () {
     }
 
     const productData = {
-      id: productsDetails.product_id,
+      id: productsDetails?.product_id,
       name,
       description,
       ingredients,
