@@ -11,7 +11,7 @@ import { api } from '../../services/api'
 
 // Hooks
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 // Components
 import { Footer } from '../../components/Footer'
@@ -55,7 +55,7 @@ export function EditProduct () {
   async function handleEditProduct () {
     let dataImageName
 
-    if (productsDetails.image !== imageFile) {
+    if (productsDetails?.image !== imageFile) {
       const fileUploadForm = new FormData()
       fileUploadForm.append('image', imageFile)
 
@@ -65,7 +65,7 @@ export function EditProduct () {
     }
 
     const productData = {
-      id: productsDetails.product_id,
+      id: productsDetails?.product_id,
       name,
       description,
       ingredients,
@@ -112,11 +112,13 @@ export function EditProduct () {
       <NewProductHeader />
         <Form>
           <div className='back-link'>
-            <HiOutlineChevronLeft />
-            <span>voltar</span>
+            <Link to={-1}>
+              <HiOutlineChevronLeft />
+              <span>voltar</span>
+            </Link>
           </div>
 
-          <p className='title'>Editar produto</p>
+          <p className='title'>{ productsDetails ? 'Editar produto' : 'Criar produto' }</p>
 
           <ImageUpload>
             <span>Imagem do produto</span>
@@ -176,7 +178,7 @@ export function EditProduct () {
               type='button'
               onClick={ handleEditProduct }
             >
-              Editar produto
+              { productsDetails ? 'Editar produto' : 'Criar produto' }
             </AddButton>
           </div>
 

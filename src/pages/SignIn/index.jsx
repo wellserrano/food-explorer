@@ -5,18 +5,16 @@ import { useAuth } from '../../hooks/auth'
 
 import { Button } from '../../components/Button'
 import { TextInput } from '../../components/TextInput'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export function SignIn () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const navigate = useNavigate()
   const { signIn } = useAuth()
 
   function handleSignIn () {
     signIn({ email, password })
-    navigate('/')
   }
 
   return (
@@ -51,7 +49,7 @@ export function SignIn () {
           onClick={ handleSignIn }
         />
 
-        <Link to={-1}>Criar uma conta</Link>
+        <Link to='/signup'>Criar uma conta</Link>
 
       </Form>
     </Container>
