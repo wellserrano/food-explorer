@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Container, Form } from './styles'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { api } from '../../services/api'
 
@@ -14,6 +14,8 @@ export function SignUp () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate()
+
   function HandleSignUp () {
     api.post('/users', {
       name,
@@ -22,6 +24,7 @@ export function SignUp () {
     })
       .then(() => {
         alert('Usuário cadastrado com sucesso!')
+        navigate('/')
       })
       .catch(error => {
         if (error.response) {
@@ -70,7 +73,7 @@ export function SignUp () {
           onClick={HandleSignUp}
         />
 
-        <Link to='/signin'>Já tenho uma conta</Link>
+        <Link to='/'>Já tenho uma conta</Link>
 
       </Form>
     </Container>
