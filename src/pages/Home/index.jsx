@@ -25,16 +25,16 @@ export function Home () {
   ]
 
   async function handleSearch () {
-    if (search.length === 0) return
-
+    setDishes([])
     const response = await api.get(`/dishes/search?like=${search}`)
 
     setDishes(response.data)
+    console.log({ dishes, res: response.data })
     setIsSearching(true)
   }
 
   useEffect(() => {
-    if (search.length === 0) {
+    if (dishes.length > 0) {
       setDishes([])
       setIsSearching(false)
     }
