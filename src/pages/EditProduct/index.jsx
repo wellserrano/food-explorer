@@ -11,7 +11,7 @@ import { api } from '../../services/api'
 
 // Hooks
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, Navigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 // Components
 import { Footer } from '../../components/Footer'
@@ -34,7 +34,7 @@ export function EditProduct () {
 
   const location = useLocation()
   const { productsDetails } = location.state
-  const navigate = Navigate()
+  const navigate = useNavigate()
 
   async function handleImageUpload (event) {
     event.preventDefault()
@@ -109,7 +109,7 @@ export function EditProduct () {
       <NewProductHeader />
         <Form>
           <div className='back-link'>
-            <Link to={-1}>
+            <Link to='/'>
               <HiOutlineChevronLeft />
               <span>voltar</span>
             </Link>

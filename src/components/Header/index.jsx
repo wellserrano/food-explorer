@@ -67,7 +67,9 @@ export function Header ({ children, productsDetails, ...rest }) {
 
       {
         user.admin
-          ? <AdminButton onClick={ handleAdmin } test={productsDetails}>{ productsDetails ? 'Editar produto' : 'Administrador'}</AdminButton>
+          ? <AdminButton onClick={ handleAdmin }>
+            { productsDetails ? 'Editar produto' : 'Administrador'}
+            </AdminButton>
 
           : <Button
           title={`Meu pedido (${items.length ?? 0})`}
