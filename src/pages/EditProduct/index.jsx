@@ -11,7 +11,7 @@ import { api } from '../../services/api'
 
 // Hooks
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Navigate } from 'react-router-dom'
 
 // Components
 import { Footer } from '../../components/Footer'
@@ -34,6 +34,7 @@ export function EditProduct () {
 
   const location = useLocation()
   const { productsDetails } = location.state
+  const navigate = Navigate()
 
   async function handleImageUpload (event) {
     event.preventDefault()
@@ -89,12 +90,8 @@ export function EditProduct () {
       await api.post('/ingredients', { product_id, ingredients })
 
       alert('Produto criado com sucesso')
-      refreshPage()
+      navigate('/')
     }
-  }
-
-  function refreshPage () {
-    window.location.reload(false)
   }
 
   useEffect(() => {
