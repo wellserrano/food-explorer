@@ -38,7 +38,6 @@ export function NewProductHeader () {
         <Link to="/"><span>food.exp</span></Link>
       </div>
 
-      <AdminButton>Administrador</AdminButton>
       <Button
           title={`Meu pedido (${items.length ?? 0})`}
           icon={ TbReceipt }
