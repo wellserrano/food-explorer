@@ -118,7 +118,7 @@ export function EditProduct () {
             </Link>
           </div>
 
-          <p className='title'>Editar produto</p>
+          <p className='title'>{ productsDetails ? 'Editar produto' : 'Criar produto' }</p>
 
           <ImageUpload>
             <span>Imagem do produto</span>
@@ -178,7 +178,7 @@ export function EditProduct () {
               type='button'
               onClick={ handleEditProduct }
             >
-              Editar produto
+              { productsDetails ? 'Editar produto' : 'Criar produto' }
             </AddButton>
           </div>
 
