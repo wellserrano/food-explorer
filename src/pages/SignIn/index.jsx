@@ -33,6 +33,7 @@ export function SignIn () {
 
         <TextInput
           caption='Email'
+          type='email'
           placeholder='exemplo@exemplo.com.br'
           onChange={ e => setEmail(e.target.value) }
         />
