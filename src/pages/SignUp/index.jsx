@@ -17,6 +17,10 @@ export function SignUp () {
   const navigate = useNavigate()
 
   function HandleSignUp () {
+    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/
+    const isEmailValid = emailRegex.test(email)
+    if (!isEmailValid) return alert('E-mail inválido')
+
     api.post('/users', {
       name,
       email,
@@ -57,6 +61,7 @@ export function SignUp () {
         />
         <TextInput
           caption='Email'
+          type='email'
           placeholder='exemplo@exemplo.com.br'
           onChange={e => setEmail(e.target.value) }
         />
